@@ -6,8 +6,15 @@ export default function ScrollToTop() {
     const [visible, setVisible] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
         let scrollTimeout;
 
         const handleScroll = () => {
@@ -33,11 +40,16 @@ export default function ScrollToTop() {
             window.removeEventListener("scroll", handleScroll);
             clearTimeout(scrollTimeout);
         };
-    }, []);
+    }, [mounted]);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    // Don't render anything until component is mounted on client
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <div className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
@@ -52,7 +64,7 @@ export default function ScrollToTop() {
                         cy="28"
                         r="24"
                         fill="none"
-                        stroke="rgba(34, 197, 94, 0.2)"
+                        stroke="rgba(239, 68, 68, 0.2)"
                         strokeWidth="2"
                     />
                     {/* Progress circle */}
@@ -61,14 +73,14 @@ export default function ScrollToTop() {
                         cy="28"
                         r="24"
                         fill="none"
-                        stroke="rgba(34, 197, 94, 0.8)"
+                        stroke="rgba(239, 68, 68, 0.8)"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeDasharray={`${2 * Math.PI * 24}`}
                         strokeDashoffset={`${2 * Math.PI * 24 * (1 - scrollProgress / 100)}`}
                         className="transition-all duration-300"
                         style={{
-                            filter: 'drop-shadow(0 0 4px rgba(34, 197, 94, 0.6))'
+                            filter: 'drop-shadow(0 0 4px rgba(239, 68, 68, 0.6))'
                         }}
                     />
                 </svg>
@@ -76,23 +88,23 @@ export default function ScrollToTop() {
                 {/* Main button */}
                 <button
                     onClick={scrollToTop}
-                    className={`absolute inset-2 bg-black border-2 border-green-400 hover:border-green-300 rounded-full transition-all duration-300 group overflow-hidden ${
-                        isScrolling ? 'scale-110 shadow-lg shadow-green-400/50' : 'hover:scale-105'
+                    className={`absolute inset-2 bg-black border-2 border-red-500 hover:border-red-400 rounded-full transition-all duration-300 group overflow-hidden ${
+                        isScrolling ? 'scale-110 shadow-lg shadow-red-500/50' : 'hover:scale-105'
                     }`}
                     aria-label="Scroll to top"
                 >
                     {/* Glowing background */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-green-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                     {/* Scan line effect */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-400/30 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/30 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-700"></div>
 
                     {/* Arrow icon */}
                     <div className="relative z-10 flex items-center justify-center w-full h-full">
                         <div className="relative">
                             {/* Main arrow */}
                             <svg
-                                className="w-5 h-5 text-green-400 group-hover:text-green-300 transition-all duration-300 group-hover:scale-110"
+                                className="w-5 h-5 text-red-500 group-hover:text-red-400 transition-all duration-300 group-hover:scale-110"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -107,7 +119,7 @@ export default function ScrollToTop() {
 
                             {/* Glowing arrow overlay */}
                             <svg
-                                className="absolute inset-0 w-5 h-5 text-green-400 blur-sm opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+                                className="absolute inset-0 w-5 h-5 text-red-500 blur-sm opacity-50 group-hover:opacity-70 transition-opacity duration-300"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -126,7 +138,7 @@ export default function ScrollToTop() {
                         {[...Array(6)].map((_, i) => (
                             <div
                                 key={i}
-                                className="absolute w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"
+                                className="absolute w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"
                                 style={{
                                     left: `${20 + Math.random() * 60}%`,
                                     top: `${20 + Math.random() * 60}%`,
@@ -137,15 +149,6 @@ export default function ScrollToTop() {
                         ))}
                     </div>
                 </button>
-
-                {/* Percentage indicator */}
-                <div className={`absolute -top-8 left-1/2 transform -translate-x-1/2 transition-all duration-300 ${
-                    isScrolling ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                }`}>
-                    <div className="bg-black/90 border border-green-400/50 rounded px-2 py-1 text-xs text-green-400 font-mono backdrop-blur-sm">
-                        {Math.round(scrollProgress)}%
-                    </div>
-                </div>
             </div>
         </div>
     );

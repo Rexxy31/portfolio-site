@@ -17,27 +17,12 @@ import {
     Clock,
     Globe
 } from "lucide-react";
+import FadeInWhenVisible from "./FadeInWhenVisible";
 
 // Simple toast implementation (replace with your actual toast library)
 const toast = {
     success: (message) => console.log('Success:', message),
     error: (message) => console.log('Error:', message)
-};
-
-// Simple FadeInWhenVisible component
-const FadeInWhenVisible = ({ children, delay = 0 }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), delay * 1000);
-        return () => clearTimeout(timer);
-    }, [delay]);
-
-    return (
-        <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {children}
-        </div>
-    );
 };
 
 export default function ContactForm() {
@@ -155,49 +140,37 @@ export default function ContactForm() {
     return (
         <section
             id="contact"
-            className="scroll-mt-24 py-32 bg-gradient-to-br from-black via-gray-900 to-black px-6 text-green-300 font-mono relative overflow-hidden"
+            className="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-black px-4 sm:px-6 text-white font-mono relative overflow-hidden"
         >
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5" />
-            <div className="absolute top-1/4 right-1/6 w-80 h-80 bg-green-500/8 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 left-1/6 w-96 h-96 bg-emerald-500/6 rounded-full blur-3xl animate-pulse delay-1000" />
-
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-12 sm:mb-16">
                     <FadeInWhenVisible>
-                        <div className="inline-flex items-center gap-4 mb-6">
-                            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-green-400"></div>
-                            <h2 className="text-5xl md:text-6xl font-extrabold text-green-400 drop-shadow-glow">
-                                {typedText}
-                                <span className="animate-pulse">|</span>
+                        <div className="inline-flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent to-white/30"></div>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
+                                <span className="text-red-500">&gt;</span> Get In Touch
                             </h2>
-                            <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-green-400"></div>
+                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-l from-transparent to-white/30"></div>
                         </div>
-                        <div className="w-32 h-1 bg-gradient-to-r from-green-600 via-green-400 to-green-600 mx-auto rounded-full shadow-lg shadow-green-400/30 mb-8" />
-
-                        <p className="text-green-200 text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto">
-                            Ready to collaborate on your next{" "}
-                            <span className="text-green-400 font-semibold">cybersecurity project</span>?{" "}
-                            <span className="text-green-400 font-semibold">Let's connect</span> and build something amazing together.
-                        </p>
+                        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/10 via-white/30 to-white/10 mx-auto rounded-full shadow-lg shadow-white/10" />
                     </FadeInWhenVisible>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                     {/* Contact Form */}
                     <FadeInWhenVisible delay={0.2}>
-                        <div className="bg-green-500/5 backdrop-blur-sm border border-green-500/20 rounded-2xl p-8 shadow-xl">
-                            <div className="flex items-center gap-3 mb-8">
-                                <Terminal className="w-6 h-6 text-green-400" />
-                                <h3 className="text-2xl font-bold text-green-400">Send Message</h3>
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
+                            <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+                                <Terminal className="w-5 sm:w-6 h-5 sm:h-6 text-red-500" />
+                                <h3 className="text-xl sm:text-2xl font-bold text-white">Send Message</h3>
                             </div>
 
-                            <div className="space-y-6">
+                            <div className="space-y-4 sm:space-y-6">
                                 {/* Name Field */}
                                 <div className="relative">
-                                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-500">
-                                        <User className="w-5 h-5" />
+                                    <div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-red-500">
+                                        <User className="w-4 sm:w-5 h-4 sm:h-5" />
                                     </div>
                                     <input
                                         type="text"
@@ -205,22 +178,22 @@ export default function ContactForm() {
                                         value={form.name}
                                         onChange={handleChange}
                                         placeholder="Your Name"
-                                        className={`w-full pl-12 pr-4 py-4 rounded-xl border bg-black/40 backdrop-blur-sm placeholder-green-600/70 text-green-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-400 transition-all duration-300 ${
-                                            errors.name ? 'border-red-500/50 focus:ring-red-500/50' : 'border-green-600/30'
+                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 text-sm sm:text-base ${
+                                            errors.name ? 'border-red-500' : 'border-white/20'
                                         }`}
                                     />
                                     {errors.name && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
-                                            <AlertCircle className="w-4 h-4" />
-                                            {errors.name}
+                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
+                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
+                                            <span>{errors.name}</span>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Email Field */}
                                 <div className="relative">
-                                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-500">
-                                        <Mail className="w-5 h-5" />
+                                    <div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-red-500">
+                                        <Mail className="w-4 sm:w-5 h-4 sm:h-5" />
                                     </div>
                                     <input
                                         type="email"
@@ -228,142 +201,133 @@ export default function ContactForm() {
                                         value={form.email}
                                         onChange={handleChange}
                                         placeholder="your.email@example.com"
-                                        className={`w-full pl-12 pr-4 py-4 rounded-xl border bg-black/40 backdrop-blur-sm placeholder-green-600/70 text-green-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-400 transition-all duration-300 ${
-                                            errors.email ? 'border-red-500/50 focus:ring-red-500/50' : 'border-green-600/30'
+                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 text-sm sm:text-base ${
+                                            errors.email ? 'border-red-500' : 'border-white/20'
                                         }`}
                                     />
                                     {errors.email && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
-                                            <AlertCircle className="w-4 h-4" />
-                                            {errors.email}
+                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
+                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
+                                            <span>{errors.email}</span>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Message Field */}
                                 <div className="relative">
-                                    <div className="absolute left-4 top-6 text-green-500">
-                                        <MessageSquare className="w-5 h-5" />
+                                    <div className="absolute left-3 sm:left-4 top-3 sm:top-4 text-red-500">
+                                        <MessageSquare className="w-4 sm:w-5 h-4 sm:h-5" />
                                     </div>
                                     <textarea
                                         name="message"
                                         value={form.message}
                                         onChange={handleChange}
-                                        placeholder="Tell me about your project, goals, or just say hello..."
-                                        rows={6}
-                                        className={`w-full pl-12 pr-4 py-4 rounded-xl border bg-black/40 backdrop-blur-sm placeholder-green-600/70 text-green-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-400 transition-all duration-300 resize-none ${
-                                            errors.message ? 'border-red-500/50 focus:ring-red-500/50' : 'border-green-600/30'
+                                        placeholder="Tell me about your project..."
+                                        rows={5}
+                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 resize-none text-sm sm:text-base ${
+                                            errors.message ? 'border-red-500' : 'border-white/20'
                                         }`}
                                     />
-                                    <div className="absolute bottom-4 right-4 text-xs text-green-500/70">
-                                        {form.message.length}/500
-                                    </div>
                                     {errors.message && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-400 text-sm">
-                                            <AlertCircle className="w-4 h-4" />
-                                            {errors.message}
+                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
+                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
+                                            <span>{errors.message}</span>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Submit Button */}
-                                <div
+                                <button
                                     onClick={handleSubmit}
-                                    className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 disabled:from-green-700 disabled:to-emerald-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center gap-3 cursor-pointer"
+                                    disabled={loading}
+                                    className={`w-full flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ${
+                                        loading
+                                            ? 'bg-white/10 text-white/40 cursor-not-allowed'
+                                            : 'bg-white text-black hover:bg-white/90 shadow-lg hover:shadow-white/25'
+                                    }`}
                                 >
                                     {loading ? (
                                         <>
-                                            <Loader2 className="w-5 h-5 animate-spin" />
-                                            <span>Sending Message...</span>
+                                            <Loader2 className="w-4 sm:w-5 h-4 sm:h-5 animate-spin" />
+                                            <span>Sending...</span>
+                                        </>
+                                    ) : success ? (
+                                        <>
+                                            <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5" />
+                                            <span>Message Sent!</span>
                                         </>
                                     ) : (
                                         <>
-                                            <Send className="w-5 h-5" />
+                                            <Send className="w-4 sm:w-5 h-4 sm:h-5" />
                                             <span>Send Message</span>
                                         </>
                                     )}
-                                </div>
-
-                                {/* Success Message */}
-                                {success && (
-                                    <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 flex items-center gap-3 text-green-400 animate-pulse">
-                                        <CheckCircle className="w-6 h-6 flex-shrink-0" />
-                                        <div>
-                                            <div className="font-semibold">Message sent successfully!</div>
-                                            <div className="text-sm text-green-300">I'll get back to you within 24 hours.</div>
-                                        </div>
-                                    </div>
-                                )}
+                                </button>
                             </div>
                         </div>
                     </FadeInWhenVisible>
 
-                    {/* Contact Information */}
-                    <div className="space-y-8">
-                        {/* Contact Info Cards */}
+                    {/* Contact Info & Social Links */}
+                    <div className="space-y-6 sm:space-y-8">
+                        {/* Contact Information */}
                         <FadeInWhenVisible delay={0.3}>
-                            <div className="space-y-6">
-                                <h3 className="text-2xl font-bold text-green-400 mb-6">Contact Information</h3>
-                                {contactInfo.map((info, index) => (
-                                    <div key={index} className="bg-green-500/5 backdrop-blur-sm border border-green-500/20 rounded-xl p-6 hover:bg-green-500/10 hover:border-green-400/30 transition-all duration-300">
-                                        <div className="flex items-start gap-4">
-                                            <div className="text-green-400 mt-1">
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Contact Information</h3>
+                                <div className="space-y-4 sm:space-y-6">
+                                    {contactInfo.map((info, index) => (
+                                        <div key={index} className="flex items-start gap-3 sm:gap-4">
+                                            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center text-red-500 border border-white/20">
                                                 {info.icon}
                                             </div>
                                             <div>
-                                                <div className="text-green-300 font-semibold">{info.label}</div>
-                                                <div className="text-green-400 text-lg font-mono">{info.value}</div>
-                                                <div className="text-green-500 text-sm mt-1">{info.subtext}</div>
+                                                <h4 className="font-semibold text-white text-sm sm:text-base">{info.label}</h4>
+                                                <p className="text-white/80 text-sm sm:text-base">{info.value}</p>
+                                                <p className="text-white/60 text-xs sm:text-sm">{info.subtext}</p>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         </FadeInWhenVisible>
 
                         {/* Social Links */}
                         <FadeInWhenVisible delay={0.4}>
-                            <div className="bg-green-500/5 backdrop-blur-sm border border-green-500/20 rounded-xl p-6">
-                                <h4 className="text-xl font-semibold text-green-400 mb-4">Connect With Me</h4>
-                                <div className="flex gap-4">
-                                    {socialLinks.map((social, index) => (
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Connect With Me</h3>
+                                <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                                    {socialLinks.map((link, index) => (
                                         <a
                                             key={index}
-                                            href={social.url}
+                                            href={link.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center w-12 h-12 bg-green-500/10 border border-green-500/30 rounded-lg hover:bg-green-500/20 hover:border-green-400 hover:scale-110 transition-all duration-300 text-green-400 hover:text-green-300"
-                                            title={social.label}
+                                            className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-red-500 rounded-xl transition-all duration-300 transform hover:scale-105"
                                         >
-                                            {social.icon}
+                                            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center text-red-500 group-hover:text-red-400 border border-white/20 group-hover:border-red-500 transition-all duration-300">
+                                                {link.icon}
+                                            </div>
+                                            <span className="text-white/80 group-hover:text-white font-medium text-sm sm:text-base">{link.label}</span>
                                         </a>
                                     ))}
                                 </div>
                             </div>
                         </FadeInWhenVisible>
 
-                        {/* Availability Status */}
+                        {/* Quick Response */}
                         <FadeInWhenVisible delay={0.5}>
-                            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-xl p-6">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                                    <h4 className="text-xl font-semibold text-green-400">Available for Work</h4>
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl text-center hover:bg-white/10 transition-all duration-300">
+                                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                                    <div className="w-2 sm:w-3 h-2 sm:h-3 bg-red-500 rounded-full animate-pulse"></div>
+                                    <span className="font-semibold text-red-500 text-sm sm:text-base">Quick Response</span>
                                 </div>
-                                <p className="text-green-200 text-sm leading-relaxed">
-                                    Currently accepting new cybersecurity projects and consulting opportunities.
-                                    Specializing in web application security, penetration testing, and security audits.
+                                <p className="text-white/60 text-xs sm:text-sm">
+                                    I typically respond within a few hours during business days
                                 </p>
                             </div>
                         </FadeInWhenVisible>
                     </div>
                 </div>
             </div>
-
-            <style jsx>{`
-                .drop-shadow-glow {
-                    filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.5));
-                }
-            `}</style>
         </section>
     );
 }

@@ -15,32 +15,24 @@ export default function ParticlesBackground() {
             init={particlesInit}
             options={{
                 fullScreen: { enable: false },
-                background: { color: { value: "#0a0a0a" } }, // very dark background
+                background: { color: { value: "#0a0a0a" } },
                 particles: {
-                    number: { value: 50, density: { enable: true, value_area: 700 } },
-                    color: { value: "#39ff14" }, // neon green color
+                    number: { value: 40, density: { enable: true, value_area: 700 } },
+                    color: { value: "#ffffff" }, // subtle white
                     shape: { type: "circle" },
-                    opacity: { value: 0.7, random: true },
-                    size: { value: 3, random: true },
-                    move: { enable: true, speed: 1.5, direction: "none", outModes: "bounce" },
+                    opacity: { value: 0.08, random: true },
+                    size: { value: 2, random: true },
+                    move: { enable: true, speed: 0.5, direction: "none", outModes: "bounce" },
                     links: {
-                        enable: true,
-                        distance: 120,
-                        color: "#39ff14",
-                        opacity: 0.4,
-                        width: 1,
+                        enable: false
                     },
                     glow: {
-                        enable: true,
-                        color: "#39ff14",
-                        blur: 10,
+                        enable: false
                     },
                 },
                 interactivity: {
-                    events: { onHover: { enable: true, mode: "repulse" } },
-                    modes: {
-                        repulse: { distance: 100, duration: 0.4 },
-                    },
+                    events: { onHover: { enable: false } },
+                    modes: {},
                 },
                 detectRetina: true,
             }}

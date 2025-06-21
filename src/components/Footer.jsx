@@ -55,92 +55,39 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative bg-black border-t border-green-500/30 font-mono overflow-hidden">
+        <footer className="relative bg-black border-t border-white/10 font-mono overflow-hidden">
             {/* Animated background grid */}
             <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24px,rgba(34,197,94,0.1)_25px,rgba(34,197,94,0.1)_26px,transparent_27px),linear-gradient(rgba(34,197,94,0.1)_1px,transparent_1px)] bg-[25px_25px] animate-pulse"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24px,rgba(255,255,255,0.04)_25px,rgba(255,255,255,0.04)_26px,transparent_27px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[25px_25px] animate-pulse"></div>
             </div>
 
             {/* Glowing top border */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"></div>
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-            <div className="relative max-w-6xl mx-auto px-6 py-6">
+            <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-6">
                 {/* Main content grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div className="flex justify-start items-center">
 
-                    {/* Left: System Status */}
+                    {/* Copyright */}
                     <div className="text-left">
-                        <div className="space-y-2">
-                            <div className="flex items-center space-x-2 text-xs text-green-500">
-                                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                <span>SYSTEM ONLINE</span>
-                            </div>
-                            <div className="text-xs text-green-400/70">
-                                IST: {formatTime(currentTime)}
-                            </div>
-                            <div className="text-xs text-green-400/70">
-                                UPTIME: {Math.floor(Date.now() / 1000)} sec
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Center: Copyright */}
-                    <div className="text-center">
-                        <div className="space-y-3">
-                            <div className="text-sm text-green-400">
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm text-white/60">
                                 &copy; {new Date().getFullYear()}
-                            </div>
+                            </span>
                             <div className="relative">
-                                <span className="text-lg font-bold text-green-400 relative z-10">
+                                <span className="text-sm font-bold text-white relative z-10">
                                     {glitchText}
                                 </span>
-                                <span className="absolute inset-0 text-lg font-bold text-green-400 blur-sm opacity-50">
+                                <span className="absolute inset-0 text-sm font-bold text-white blur-sm opacity-50">
                                     {glitchText}
                                 </span>
                             </div>
-                            <div className="text-xs text-green-500/70 uppercase tracking-wider">
+                            <span className="text-sm text-white/40 uppercase tracking-wider">
                                 All rights reserved
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: Social Links */}
-                    <div className="text-right">
-                        <div className="flex justify-end space-x-3">
-                            {socialLinks.map((link, index) => (
-                                <a
-                                    key={link.name}
-                                    href={link.href}
-                                    className="group relative w-8 h-8 flex items-center justify-center rounded-lg bg-green-400/10 border border-green-500/30 hover:border-green-400 hover:bg-green-400/20 transition-all duration-300"
-                                    title={link.name}
-                                >
-                                    <span className="text-sm transition-transform duration-300 group-hover:scale-110">
-                                        {link.icon}
-                                    </span>
-                                    <div className="absolute inset-0 rounded-lg bg-green-400/20 scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                                </a>
-                            ))}
+                            </span>
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-
-            {/* Floating particles effect */}
-            <div className="absolute inset-0 pointer-events-none">
-                {[...Array(20)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-ping"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 3}s`,
-                            animationDuration: `${2 + Math.random() * 2}s`
-                        }}
-                    ></div>
-                ))}
             </div>
         </footer>
     );

@@ -8,13 +8,10 @@ export default function ProjectCard({ project }) {
 
     return (
         <div
-            className="group relative bg-gradient-to-br from-black/80 via-gray-900/80 to-black/80 backdrop-blur-sm border border-green-500/30 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] font-mono"
+            className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] font-mono"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Animated Border Glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-sm" />
-
             {/* Content Container */}
             <div className="relative z-10 p-8 space-y-6">
                 {/* Header Section */}
@@ -25,16 +22,16 @@ export default function ProjectCard({ project }) {
                             {project.status && (
                                 <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
                                     project.status === 'completed'
-                                        ? 'bg-green-500/20 text-green-400 border border-green-500/40'
+                                        ? 'bg-white/10 text-red-500 border border-red-500/40'
                                         : project.status === 'in-progress'
-                                            ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40'
-                                            : 'bg-blue-500/20 text-blue-400 border border-blue-500/40'
+                                            ? 'bg-yellow-500/10 text-yellow-500 border border-yellow-500/40'
+                                            : 'bg-blue-500/10 text-blue-400 border border-blue-500/40'
                                 }`}>
                                     {project.status.replace('-', ' ').toUpperCase()}
                                 </div>
                             )}
                             {project.category && (
-                                <div className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                                <div className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white border border-white/20">
                                     {project.category}
                                 </div>
                             )}
@@ -49,13 +46,13 @@ export default function ProjectCard({ project }) {
                     </div>
 
                     {/* Project Title */}
-                    <h3 className="text-2xl font-bold text-green-400 tracking-wide group-hover:text-green-300 transition-colors duration-300">
-                        <span className="text-green-500">&gt;</span> {project.title}
+                    <h3 className="text-2xl font-bold text-white tracking-wide group-hover:text-red-500 transition-colors duration-300">
+                        <span className="text-red-500">&gt;</span> {project.title}
                     </h3>
 
                     {/* Project Metrics */}
                     {(project.year || project.duration) && (
-                        <div className="flex items-center gap-4 text-sm text-green-300/70">
+                        <div className="flex items-center gap-4 text-sm text-white/60">
                             {project.year && (
                                 <div className="flex items-center gap-1">
                                     <Calendar size={14} />
@@ -74,24 +71,24 @@ export default function ProjectCard({ project }) {
 
                 {/* Description */}
                 <div className="relative">
-                    <p className="text-green-200 text-base leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
+                    <p className="text-white/80 text-base leading-relaxed line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
                         {project.description}
                     </p>
 
                     {/* Expand indicator */}
-                    <div className="absolute bottom-0 right-0 bg-gradient-to-l from-gray-900 to-transparent pl-8 group-hover:opacity-0 transition-opacity duration-300">
-                        <span className="text-green-400/60 text-sm cursor-pointer">...</span>
+                    <div className="absolute bottom-0 right-0 bg-gradient-to-l from-black to-transparent pl-8 group-hover:opacity-0 transition-opacity duration-300">
+                        <span className="text-red-500/60 text-sm cursor-pointer">...</span>
                     </div>
                 </div>
 
                 {/* Key Features */}
                 {project.features && (
                     <div className="space-y-2">
-                        <h4 className="text-sm font-semibold text-green-400">Key Features:</h4>
-                        <ul className="text-sm text-green-300/80 space-y-1">
+                        <h4 className="text-sm font-semibold text-white">Key Features:</h4>
+                        <ul className="text-sm text-white/70 space-y-1">
                             {project.features.slice(0, 3).map((feature, idx) => (
                                 <li key={idx} className="flex items-start gap-2">
-                                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0" />
+                                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0" />
                                     <span>{feature}</span>
                                 </li>
                             ))}
@@ -101,7 +98,7 @@ export default function ProjectCard({ project }) {
 
                 {/* Tech Stack */}
                 <div className="space-y-3">
-                    <h4 className="text-sm font-semibold text-green-400 flex items-center gap-2">
+                    <h4 className="text-sm font-semibold text-white flex items-center gap-2">
                         <Code size={16} />
                         Tech Stack
                     </h4>
@@ -109,10 +106,10 @@ export default function ProjectCard({ project }) {
                         {project.tech.map((tech, idx) => (
                             <span
                                 key={idx}
-                                className="group/tech relative px-3 py-1.5 bg-green-500/10 border border-green-500/30 rounded-lg text-green-300 text-sm font-medium hover:bg-green-500/20 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 cursor-default"
+                                className="group/tech relative px-3 py-1.5 bg-white/10 border border-white/20 rounded-lg text-white/80 text-sm font-medium hover:bg-white/20 hover:border-red-500/50 hover:text-red-500 transition-all duration-200 cursor-default"
                             >
                                 {tech}
-                                <div className="absolute inset-0 bg-green-400/0 group-hover/tech:bg-green-400/5 rounded-lg transition-colors duration-200" />
+                                <div className="absolute inset-0 bg-red-500/0 group-hover/tech:bg-red-500/5 rounded-lg transition-colors duration-200" />
                             </span>
                         ))}
                     </div>
@@ -120,7 +117,7 @@ export default function ProjectCard({ project }) {
 
                 {/* Project Stats */}
                 {(project.stars || project.forks || project.views) && (
-                    <div className="flex items-center gap-4 text-sm text-green-300/70 pt-2 border-t border-green-500/20">
+                    <div className="flex items-center gap-4 text-sm text-white/60 pt-2 border-t border-white/10">
                         {project.stars && (
                             <div className="flex items-center gap-1">
                                 <Star size={14} />
@@ -149,9 +146,9 @@ export default function ProjectCard({ project }) {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/btn flex items-center gap-2 bg-green-500/10 hover:bg-green-500/20 border border-green-500/30 hover:border-green-400/60 text-green-400 hover:text-green-300 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
+                            className="group/btn flex items-center gap-2 bg-white text-black px-4 py-2.5 rounded-xl font-medium border border-white/10 hover:border-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            <Github size={18} className="group-hover/btn:rotate-12 transition-transform duration-300" />
+                            <Github size={18} className="group-hover/btn:text-red-500 transition-colors duration-300" />
                             <span>Code</span>
                         </a>
                     )}
@@ -161,9 +158,9 @@ export default function ProjectCard({ project }) {
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/btn flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25"
+                            className="group/btn flex items-center gap-2 bg-black text-white px-4 py-2.5 rounded-xl font-medium border border-white/10 hover:border-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            <ExternalLink size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
+                            <ExternalLink size={18} className="group-hover/btn:text-red-500 transition-colors duration-300" />
                             <span>Demo</span>
                         </a>
                     )}
@@ -173,20 +170,14 @@ export default function ProjectCard({ project }) {
                             href={project.visit}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/btn flex items-center gap-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-400/60 text-emerald-400 hover:text-emerald-300 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
+                            className="group/btn flex items-center gap-2 bg-white/10 text-white px-4 py-2.5 rounded-xl font-medium border border-white/20 hover:border-red-500 hover:text-red-500 transition-all duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            <ExternalLink size={18} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
+                            <ExternalLink size={18} className="group-hover/btn:text-red-500 transition-colors duration-300" />
                             <span>Visit</span>
                         </a>
                     )}
                 </div>
             </div>
-
-            {/* Hover Overlay Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
-
-            {/* Corner Accent */}
-            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-green-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
         </div>
     );
 }
