@@ -8,9 +8,9 @@ export default function About() {
     ];
 
     const stats = [
-        { number: "5+", label: "Years Experience" },
-        { number: "50+", label: "Projects Built" },
-        { number: "100+", label: "Security Blogs" },
+        { number: "2+", label: "Years Experience" },
+        { number: "5", label: "Projects Built" },
+        { number: "1", label: "Security Blogs" },
         { number: "24/7", label: "Learning Mode" }
     ];
 
@@ -59,8 +59,9 @@ export default function About() {
                                         <p className="text-white/80 text-base sm:text-lg leading-relaxed">
                                             By day, I contribute to{" "}
                                             <span className="text-red-500 font-medium bg-white/10 px-2 py-1 rounded">Karnataka's land mapping projects</span>,
-                                            working hands-on with GIS systems, data pipelines, and verification workflows
-                                            involving vendors and state officials.
+                                            developing web-based GIS applications and interactive dashboards for data visualization.
+                                            I build scalable web solutions to manage verification workflows, integrate geospatial data seamlessly,
+                                            and collaborate with state officials to ensure secure, user-friendly interfaces for land mapping operations.
                                         </p>
                                     </div>
                                 </div>
@@ -74,8 +75,8 @@ export default function About() {
                                     <div>
                                         <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Side Projects & Learning</h3>
                                         <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
-                                            Outside work, I write cybersecurity blogs, explore ethical hacking tools, and build
-                                            innovative projects using modern web technologies.
+                                            Outside work, I like to build
+                                            innovative projects using modern web technologies. I create applications that are free to access for educational purposes.
                                         </p>
                                         <div className="flex flex-wrap gap-2">
                                             {["React", "Next.js", "Node.js", "Security Tools"].map((tech, index) => (
