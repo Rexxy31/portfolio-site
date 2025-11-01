@@ -134,7 +134,7 @@ export default function ContactForm() {
     const socialLinks = [
         { icon: <Github className="w-5 h-5" />, label: "GitHub", url: "https://github.com/Rexxy31" },
         { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", url: "https://linkedin.com/in/yogeshkumar01" },
-        { icon: <Twitter className="w-5 h-5" />, label: "Twitter", url: "https://twitter.com/UmV4_" }
+        { icon: <Twitter className="w-5 h-5" />, label: "Twitter", url: "https://twitter.com/yogionbirdapp" }
     ];
 
     return (
