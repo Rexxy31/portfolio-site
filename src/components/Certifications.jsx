@@ -42,37 +42,37 @@ export default function Certifications() {
 
     const certifications = [
         {
+            name: "AWS Certified Developer – Associate",
+            issuer: "Amazon Web Services",
+            status: "planned",
+            progress: 0,
+            description: "Validation of expertise in developing, deploying, and debugging cloud-based applications using AWS.",
+            skills: ["Cloud Development", "Serverless Architecture", "AWS Lambda", "DynamoDB", "CI/CD"],
+            icon: <Zap className="w-6 h-6" />,
+            color: "blue",
+            expectedCompletion: "Q2 2025"
+        },
+        {
             name: "Certified Ethical Hacker (CEH)",
             issuer: "EC-Council",
             status: "in-progress",
             progress: 75,
-            description: "Comprehensive ethical hacking and network security certification covering penetration testing, vulnerability assessment, and security controls.",
-            skills: ["Penetration Testing", "Vulnerability Assessment", "Network Security", "Social Engineering", "Web Application Security"],
+            description: "Comprehensive ethical hacking certification focused on building secure-by-design applications and identifying vulnerabilities.",
+            skills: ["Secure Engineering", "Vulnerability Assessment", "Network Defense", "Secure SDLC"],
             icon: <Shield className="w-6 h-6" />,
             color: "red",
             expectedCompletion: "Q3 2025"
         },
         {
-            name: "CompTIA Security+",
-            issuer: "CompTIA",
-            status: "planned",
-            progress: 0,
-            description: "Foundation-level security certification covering network security, compliance, and operational security.",
-            skills: ["Network Security", "Compliance", "Risk Management", "Cryptography", "Identity Management"],
-            icon: <Target className="w-6 h-6" />,
-            color: "blue",
-            expectedCompletion: "Q2 2024"
-        },
-        {
-            name: "OSCP (Offensive Security Certified Professional)",
+            name: "OSCP",
             issuer: "Offensive Security",
             status: "planned",
             progress: 0,
-            description: "Hands-on penetration testing certification requiring practical exploitation of multiple systems.",
-            skills: ["Penetration Testing", "Exploitation", "Post-Exploitation", "Report Writing", "Practical Skills"],
-            icon: <Zap className="w-6 h-6" />,
+            description: "Advanced hands-on penetration testing certification to master offensive security engineering techniques.",
+            skills: ["Penetration Testing", "Exploitation", "Practical Security Engineering"],
+            icon: <Target className="w-6 h-6" />,
             color: "purple",
-            expectedCompletion: "Q3 2024"
+            expectedCompletion: "Q4 2025"
         }
     ];
 
@@ -110,13 +110,12 @@ export default function Certifications() {
                 <div className="text-center mb-12 sm:mb-16">
                     <FadeInWhenVisible>
                         <div className="inline-flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent to-white/30"></div>
+                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent to-red-500/30"></div>
                             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
                                 <span className="text-red-500">&gt;</span> Certifications
                             </h2>
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-l from-transparent to-white/30"></div>
+                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-l from-transparent to-red-500/30"></div>
                         </div>
-                        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/10 via-white/30 to-white/10 mx-auto rounded-full shadow-lg shadow-white/10" />
                     </FadeInWhenVisible>
                 </div>
 
@@ -157,7 +156,7 @@ export default function Certifications() {
                                             <span className="text-sm font-medium text-white">{isVisible ? progress : 0}%</span>
                                         </div>
                                         <div className="w-full bg-white/10 rounded-full h-2">
-                                            <div 
+                                            <div
                                                 className={`h-2 rounded-full transition-all duration-1000 ease-out ${getProgressColor(cert.color)}`}
                                                 style={{ width: `${isVisible ? progress : 0}%` }}
                                             ></div>
@@ -171,8 +170,8 @@ export default function Certifications() {
                                     <h4 className="text-sm font-semibold text-white mb-2 sm:mb-3">Key Skills Covered:</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {cert.skills.map((skill, skillIndex) => (
-                                            <span 
-                                                key={skillIndex} 
+                                            <span
+                                                key={skillIndex}
                                                 className="bg-white/10 text-white/80 px-2 sm:px-3 py-1 rounded-full text-xs font-medium border border-white/20"
                                             >
                                                 {skill}
@@ -186,8 +185,8 @@ export default function Certifications() {
                                     <div className="flex items-center gap-2">
                                         <Award className="w-4 h-4 text-white/60" />
                                         <span className="text-xs text-white/60">
-                                            {cert.status === "completed" ? "Certified" : 
-                                             cert.status === "in-progress" ? "In Progress" : "Planned"}
+                                            {cert.status === "completed" ? "Certified" :
+                                                cert.status === "in-progress" ? "In Progress" : "Planned"}
                                         </span>
                                     </div>
                                     {cert.status === "in-progress" && (
@@ -211,7 +210,7 @@ export default function Certifications() {
                                     Committed to Continuous Learning
                                 </h3>
                                 <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
-                                    I'm actively pursuing cybersecurity certifications to stay current with industry best practices 
+                                    I'm actively pursuing cybersecurity certifications to stay current with industry best practices
                                     and demonstrate my commitment to professional development in the security field.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

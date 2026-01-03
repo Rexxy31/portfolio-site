@@ -1,49 +1,66 @@
 import FadeInWhenVisible from "./FadeInWhenVisible";
+import { Database, Code2, Layout, Zap } from "lucide-react";
 
 export default function About() {
     const skills = [
-        { category: "Security", items: ["Threat Modeling", "Ethical Hacking", "Linux Hardening", "Network Security"] },
-        { category: "Development", items: ["React", "Next.js", "Node.js", "Full-Stack"] },
-        { category: "Current Focus", items: ["Security Engineering", "Offensive Security", "GIS Systems"] }
+        {
+            category: "Backend & GIS",
+            items: ["Java", "Spring Boot", "Node.js", "PostgreSQL/PostGIS"],
+            icon: <Database className="w-5 h-5 text-indigo-500" />
+        },
+        {
+            category: "Frontend & UI",
+            items: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
+            icon: <Layout className="w-5 h-5 text-blue-500" />
+        },
+        {
+            category: "DevOps & Infrastructure",
+            items: ["Docker", "Jenkins", "Nginx", "Linux/Security"],
+            icon: <Zap className="w-5 h-5 text-indigo-400" />
+        }
     ];
 
     const stats = [
-        { number: "2+", label: "Years Experience" },
-        { number: "5", label: "Projects Built" },
-        { number: "1", label: "Security Blogs" },
-        { number: "24/7", label: "Learning Mode" }
+        { number: "2+", label: "Years Impact" },
+        { number: "5+", label: "Enterprise Apps" },
+        { number: "GIS", label: "Specialization" },
+        { number: "Full", label: "Stack Mastery" }
     ];
 
     return (
-        <section id="about" className="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-black px-4 sm:px-6 md:px-12 text-white font-mono relative overflow-hidden">
+        <section id="about" className="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-slate-950 px-4 sm:px-6 md:px-12 text-slate-50 relative overflow-hidden">
+            {/* Background Grid */}
+            <div className="absolute inset-0 bg-grid-white opacity-10 pointer-events-none" />
+
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="text-center mb-12 sm:mb-16">
+                <div className="text-center mb-12 sm:mb-20">
                     <FadeInWhenVisible>
-                        <div className="inline-flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent to-white/30"></div>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
-                                <span className="text-red-500">&gt;</span> About Me
+                        <div className="inline-flex items-center gap-4 mb-6">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                                About <span className="text-indigo-500">Me</span>
                             </h2>
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-l from-transparent to-white/30"></div>
                         </div>
-                        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/10 via-white/30 to-white/10 mx-auto rounded-full shadow-lg shadow-white/10" />
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+                            Passionate about building software that is as secure as it is functional.
+                        </p>
                     </FadeInWhenVisible>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+                <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
                     {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+                    <div className="lg:col-span-2 space-y-8">
                         <FadeInWhenVisible delay={0.1}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
-                                <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full mt-2 shadow-lg shadow-red-500/30 animate-pulse"></div>
+                            <div className="bg-slate-900 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl hover:bg-slate-800/50 transition-all duration-500 relative group overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/5 rounded-full blur-3xl -mr-16 -mt-16" />
+                                <div className="flex items-start gap-6">
+                                    <div className="p-3 bg-indigo-500/10 rounded-2xl">
+                                        <Code2 className="w-6 h-6 text-indigo-400" />
+                                    </div>
                                     <div>
-                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">My Journey</h3>
-                                        <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                                            I'm a <span className="text-red-500 font-semibold bg-white/10 px-2 py-1 rounded">cybersecurity enthusiast</span> and{" "}
-                                            <span className="text-red-500 font-semibold bg-white/10 px-2 py-1 rounded">web developer</span> passionate about solving
-                                            real-world problems using secure and scalable software solutions.
+                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">The Engineering Mindset</h3>
+                                        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+                                            I'm a <span className="text-indigo-400 font-bold">full-stack engineer</span> dedicated to building robust, high-performance systems. I believe that <span className="text-white font-bold">secure architecture</span> is the foundation of modern software, ensuring reliability at every layer.
                                         </p>
                                     </div>
                                 </div>
@@ -51,119 +68,77 @@ export default function About() {
                         </FadeInWhenVisible>
 
                         <FadeInWhenVisible delay={0.2}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
-                                <div className="flex items-start gap-3 sm:gap-4">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full mt-2 shadow-lg shadow-red-500/30 animate-pulse delay-300"></div>
+                            <div className="bg-slate-900 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl hover:bg-slate-800/50 transition-all duration-500 relative group overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl -mr-16 -mt-16" />
+                                <div className="flex items-start gap-6">
+                                    <div className="p-3 bg-blue-500/10 rounded-2xl">
+                                        <Database className="w-6 h-6 text-blue-400" />
+                                    </div>
                                     <div>
-                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Current Role</h3>
-                                        <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                                            By day, I contribute to{" "}
-                                            <span className="text-red-500 font-medium bg-white/10 px-2 py-1 rounded">Karnataka's land mapping projects</span>,
-                                            developing web-based GIS applications and interactive dashboards for data visualization.
-                                            I build scalable web solutions to manage verification workflows, integrate geospatial data seamlessly,
-                                            and collaborate with state officials to ensure secure, user-friendly interfaces for land mapping operations.
+                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">GIS & Enterprise Systems</h3>
+                                        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+                                            Currently, I architect complex <span className="text-indigo-400 font-medium tracking-tight">GIS web platforms</span> for Karnataka's state-wide land management initiatives. I specialize in turning massive spatial datasets into intuitive and interactive engineering dashboards.
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </FadeInWhenVisible>
 
-                        <FadeInWhenVisible delay={0.3}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
-                                <div className="flex items-start gap-3 sm:gap-4">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full mt-2 shadow-lg shadow-red-500/30 animate-pulse delay-500"></div>
-                                    <div>
-                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Side Projects & Learning</h3>
-                                        <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
-                                            Outside work, I like to build
-                                            innovative projects using modern web technologies. I create applications that are free to access for educational purposes.
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {["React", "Next.js", "Node.js", "Security Tools"].map((tech, index) => (
-                                                <span key={index} className="bg-white/10 text-white/80 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-white/20">
-                                                    {tech}
-                                                </span>
-                                            ))}
+                        <div className="grid sm:grid-cols-2 gap-6">
+                            {skills.map((skillGroup, index) => (
+                                <FadeInWhenVisible key={index} delay={0.3 + index * 0.1}>
+                                    <div className="p-8 bg-slate-900 border border-white/5 rounded-3xl hover:border-indigo-500/30 transition-all duration-500 group">
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <div className="p-2.5 bg-slate-800 rounded-xl group-hover:scale-110 group-hover:bg-slate-700 transition-all duration-300">
+                                                {skillGroup.icon}
+                                            </div>
+                                            <h4 className="font-bold text-white tracking-wide text-sm">{skillGroup.category}</h4>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </FadeInWhenVisible>
-
-                        <FadeInWhenVisible delay={0.4}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl">
-                                <div className="flex items-start gap-3 sm:gap-4">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full mt-2 shadow-lg shadow-red-500/30 animate-pulse delay-700"></div>
-                                    <div>
-                                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Future Goals</h3>
-                                        <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-3 sm:mb-4">
-                                            Currently upskilling in advanced security practices, aiming to transition into specialized roles in cybersecurity.
-                                        </p>
-                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            {["Threat Modeling", "Linux Hardening", "Network Security", "Penetration Testing"].map((skill, index) => (
-                                                <div key={index} className="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/20">
-                                                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                                                    <span className="text-white/80 font-medium text-sm">{skill}</span>
+                                        <div className="space-y-3">
+                                            {skillGroup.items.map((skill, skillIndex) => (
+                                                <div key={skillIndex} className="flex items-center gap-3 text-slate-400 text-sm font-medium">
+                                                    <div className="w-1.5 h-1.5 bg-indigo-500/40 rounded-full group-hover:bg-indigo-500 transition-colors"></div>
+                                                    {skill}
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </FadeInWhenVisible>
+                                </FadeInWhenVisible>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Sidebar */}
-                    <div className="space-y-6 sm:space-y-8">
-                        {/* Stats */}
+                    <div className="space-y-8">
+                        {/* Highlights */}
                         <FadeInWhenVisible delay={0.5}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl">
-                                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">Quick Stats</h3>
-                                <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                                    {stats.map((stat, index) => (
-                                        <div key={index} className="text-center p-3 sm:p-4 bg-white/10 rounded-xl border border-white/20">
-                                            <div className="text-xl sm:text-2xl font-bold text-white mb-1">{stat.number}</div>
-                                            <div className="text-xs sm:text-sm text-white/60">{stat.label}</div>
-                                        </div>
-                                    ))}
+                            <div className="bg-indigo-600/5 border border-indigo-500/10 rounded-3xl p-8 relative overflow-hidden group">
+                                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent" />
+                                <div className="relative z-10 text-center">
+                                    <div className="inline-flex items-center px-4 py-1.5 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-6">
+                                        <span className="font-bold text-indigo-400 tracking-wider text-[10px] uppercase">Open to Opportunities</span>
+                                    </div>
+                                    <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+                                        Seeking challenging roles in Full-Stack Engineering & Solutions Architecture.
+                                    </p>
+                                    <button className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl text-sm uppercase tracking-widest hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-600/20 transition-all duration-300">
+                                        Hire Me
+                                    </button>
                                 </div>
                             </div>
                         </FadeInWhenVisible>
 
-                        {/* Skills Overview */}
-                        <FadeInWhenVisible delay={0.6}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl">
-                                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">Skill Areas</h3>
-                                <div className="space-y-3 sm:space-y-4">
-                                    {skills.map((skillGroup, index) => (
-                                        <div key={index} className="p-3 sm:p-4 bg-white/10 rounded-xl border border-white/20">
-                                            <h4 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">{skillGroup.category}</h4>
-                                            <div className="space-y-1 sm:space-y-2">
-                                                {skillGroup.items.map((skill, skillIndex) => (
-                                                    <div key={skillIndex} className="flex items-center gap-2">
-                                                        <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
-                                                        <span className="text-white/80 text-xs sm:text-sm">{skill}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </FadeInWhenVisible>
-
-                        {/* Status */}
-                        <FadeInWhenVisible delay={0.7}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl text-center">
-                                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/30"></div>
-                                    <span className="font-semibold text-white text-sm sm:text-base">Currently Available</span>
-                                </div>
-                                <p className="text-white/60 text-xs sm:text-sm">
-                                    Open for security engineering and offensive security opportunities
-                                </p>
-                            </div>
-                        </FadeInWhenVisible>
+                        {/* Stats */}
+                        <div className="grid grid-cols-2 gap-4">
+                            {stats.map((stat, index) => (
+                                <FadeInWhenVisible key={index} delay={0.6 + index * 0.1}>
+                                    <div className="text-center p-6 bg-slate-900 rounded-3xl border border-white/5 hover:bg-slate-800 transition-all duration-300">
+                                        <div className="text-3xl font-black text-white mb-1 tracking-tight">{stat.number}</div>
+                                        <div className="text-[10px] uppercase tracking-widest text-slate-500 font-bold leading-tight">{stat.label}</div>
+                                    </div>
+                                </FadeInWhenVisible>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

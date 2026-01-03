@@ -1,331 +1,137 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
-    Send,
-    User,
     Mail,
-    MessageSquare,
-    CheckCircle,
-    AlertCircle,
-    Loader2,
-    Terminal,
+    MapPin,
     Github,
     Linkedin,
     Twitter,
-    MapPin,
-    Clock,
-    Globe
+    Copy,
+    Check,
+    ArrowRight
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import FadeInWhenVisible from "./FadeInWhenVisible";
 
-// Simple toast implementation (replace with your actual toast library)
-const toast = {
-    success: (message) => console.log('Success:', message),
-    error: (message) => console.log('Error:', message)
-};
-
 export default function ContactForm() {
-    const [form, setForm] = useState({ name: "", email: "", message: "" });
-    const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [errors, setErrors] = useState({});
-    const [typedText, setTypedText] = useState('');
-    const fullText = '> Get In Touch';
-
-    useEffect(() => {
-        let i = 0;
-        const typeTimer = setInterval(() => {
-            if (i < fullText.length) {
-                setTypedText(fullText.slice(0, i + 1));
-                i++;
-            } else {
-                clearInterval(typeTimer);
-            }
-        }, 100);
-
-        return () => clearInterval(typeTimer);
-    }, []);
-
-    const validateForm = () => {
-        const newErrors = {};
-
-        if (!form.name.trim()) newErrors.name = "Name is required";
-        if (!form.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-            newErrors.email = "Please enter a valid email";
-        }
-        if (!form.message.trim()) newErrors.message = "Message is required";
-        if (form.message.length < 10) newErrors.message = "Message must be at least 10 characters";
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    async function handleSubmit() {
-        if (!validateForm()) return;
-        if (loading) return;
-
-        setLoading(true);
-        try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // Replace with your actual API call
-            // const res = await fetch("/api/contact", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(form),
-            // });
-            // const data = await res.json();
-
-            // Simulate success
-            const data = { success: true };
-
-            if (data.success) {
-                toast.success("Message sent successfully!");
-                setForm({ name: "", email: "", message: "" });
-                setSuccess(true);
-                setErrors({});
-                setTimeout(() => setSuccess(false), 5000);
-            } else {
-                toast.error("Failed to send message. Please try again.");
-            }
-        } catch (error) {
-            toast.error("Error sending message. Please try again.");
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-
-        // Clear error for this field when user starts typing
-        if (errors[name]) {
-            setErrors({ ...errors, [name]: "" });
-        }
-    }
+    const [copied, setCopied] = useState(false);
 
     const contactInfo = [
         {
             icon: <MapPin className="w-5 h-5" />,
             label: "Location",
             value: "Bengaluru, India",
-            subtext: "Available for remote work"
+            link: "https://www.google.com/maps/place/Bengaluru,+Karnataka",
+            isAction: false
         },
-        // {
-        //     icon: <Clock className="w-5 h-5" />,
-        //     label: "Response Time",
-        //     value: "Within 24 hours",
-        //     subtext: "Usually much faster"
-        // },
-        // {
-        //     icon: <Globe className="w-5 h-5" />,
-        //     label: "Time Zone",
-        //     value: "IST (UTC+5:30)",
-        //     subtext: "Flexible with global clients"
-        // }
+        {
+            icon: <Mail className="w-5 h-5" />,
+            label: "Email",
+            value: "yogeshkumarn.02@gmail.com",
+            link: "mailto:yogeshkumarn.02@gmail.com",
+            isAction: true
+        }
     ];
 
-    const socialLinks = [
-        { icon: <Github className="w-5 h-5" />, label: "GitHub", url: "https://github.com/Rexxy31" },
-        { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", url: "https://linkedin.com/in/yogeshkumar01" },
-        { icon: <Twitter className="w-5 h-5" />, label: "Twitter", url: "https://twitter.com/yogionbirdapp" }
-    ];
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
 
     return (
-        <section
-            id="contact"
-            className="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-black px-4 sm:px-6 text-white font-mono relative overflow-hidden"
-        >
-            <div className="max-w-6xl mx-auto relative z-10">
+        <section id="contact" className="scroll-mt-24 py-20 sm:py-32 bg-slate-950 px-4 sm:px-6 relative overflow-hidden">
+            {/* Background Ornaments */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[160px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
+
+            <div className="max-w-4xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="text-center mb-12 sm:mb-16">
+                <div className="text-center mb-20 sm:mb-24">
                     <FadeInWhenVisible>
-                        <div className="inline-flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent to-white/30"></div>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white">
-                                <span className="text-red-500">&gt;</span> Get In Touch
-                            </h2>
-                            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-l from-transparent to-white/30"></div>
-                        </div>
-                        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/10 via-white/30 to-white/10 mx-auto rounded-full shadow-lg shadow-white/10" />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-8"
+                        >
+                            <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" />
+                            <span className="text-[10px] font-black text-indigo-400 uppercase tracking-widest leading-none">Open for Collaboration</span>
+                        </motion.div>
+                        <h2 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight mb-8">
+                            Ready to <span className="text-indigo-500">Scale</span>?
+                        </h2>
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
+                            Whether you have a specific project in mind or just want to talk system architecture, I'm just a click away.
+                        </p>
                     </FadeInWhenVisible>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                    {/* Contact Form */}
-                    <FadeInWhenVisible delay={0.2}>
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
-                            <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
-                                <Terminal className="w-5 sm:w-6 h-5 sm:h-6 text-red-500" />
-                                <h3 className="text-xl sm:text-2xl font-bold text-white">Send Message</h3>
-                            </div>
+                <div className="flex flex-col items-center">
+                    <FadeInWhenVisible delay={0.1}>
+                        <div className="bg-slate-900 border border-white/[0.08] rounded-[3rem] p-1 sm:p-2 shadow-2xl relative overflow-hidden group w-full max-w-xl mx-auto backdrop-blur-xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                            <div className="space-y-4 sm:space-y-6">
-                                {/* Name Field */}
-                                <div className="relative">
-                                    <div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-red-500">
-                                        <User className="w-4 sm:w-5 h-4 sm:h-5" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={form.name}
-                                        onChange={handleChange}
-                                        placeholder="Your Name"
-                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 text-sm sm:text-base ${
-                                            errors.name ? 'border-red-500' : 'border-white/20'
-                                        }`}
-                                    />
-                                    {errors.name && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
-                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
-                                            <span>{errors.name}</span>
-                                        </div>
-                                    )}
-                                </div>
+                            <div className="bg-slate-900/80 rounded-[2.5rem] p-8 sm:p-10 relative z-10">
+                                <h3 className="text-[10px] font-black text-slate-500 mb-10 border-b border-white/5 pb-6 text-center uppercase tracking-[0.4em]">Official Handshake</h3>
 
-                                {/* Email Field */}
-                                <div className="relative">
-                                    <div className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-red-500">
-                                        <Mail className="w-4 sm:w-5 h-4 sm:h-5" />
-                                    </div>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={form.email}
-                                        onChange={handleChange}
-                                        placeholder="your.email@example.com"
-                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 text-sm sm:text-base ${
-                                            errors.email ? 'border-red-500' : 'border-white/20'
-                                        }`}
-                                    />
-                                    {errors.email && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
-                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
-                                            <span>{errors.email}</span>
-                                        </div>
-                                    )}
-                                </div>
+                                <div className="space-y-4 mb-10">
+                                    {contactInfo.map((info, idx) => (
+                                        <div key={idx} className="relative group/info">
+                                            <a
+                                                href={info.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-5 bg-slate-950/40 rounded-3xl border border-white/5 hover:border-indigo-500/40 hover:bg-slate-950 transition-all duration-300 w-full group-hover/info:shadow-lg group-hover/info:shadow-indigo-500/5"
+                                            >
+                                                <div className="w-14 h-14 bg-indigo-500/5 group-hover/info:bg-indigo-600 rounded-[1.25rem] flex items-center justify-center text-indigo-400 group-hover/info:text-white border border-indigo-500/10 group-hover/info:border-indigo-500 transition-all duration-500 flex-shrink-0">
+                                                    {info.icon}
+                                                </div>
+                                                <div className="text-center sm:text-left overflow-hidden w-full flex-grow py-1">
+                                                    <div className="text-[9px] font-black text-slate-500 uppercase tracking-[0.25em] mb-1.5 opacity-80">{info.label}</div>
+                                                    <div className="text-white font-bold tracking-tight text-sm sm:text-base break-all sm:break-normal">
+                                                        {info.value}
+                                                    </div>
+                                                </div>
+                                                <div className="hidden sm:flex items-center text-slate-700 group-hover/info:text-indigo-400 transition-colors">
+                                                    <ArrowRight className="w-5 h-5 opacity-40 group-hover/info:opacity-100 group-hover/info:translate-x-1 transition-all" />
+                                                </div>
+                                            </a>
 
-                                {/* Message Field */}
-                                <div className="relative">
-                                    <div className="absolute left-3 sm:left-4 top-3 sm:top-4 text-red-500">
-                                        <MessageSquare className="w-4 sm:w-5 h-4 sm:h-5" />
-                                    </div>
-                                    <textarea
-                                        name="message"
-                                        value={form.message}
-                                        onChange={handleChange}
-                                        placeholder="Tell me about your project..."
-                                        rows={5}
-                                        className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-3 sm:py-4 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 transition-all duration-300 resize-none text-sm sm:text-base ${
-                                            errors.message ? 'border-red-500' : 'border-white/20'
-                                        }`}
-                                    />
-                                    {errors.message && (
-                                        <div className="flex items-center gap-2 mt-2 text-red-500 text-xs sm:text-sm">
-                                            <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4" />
-                                            <span>{errors.message}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Submit Button */}
-                                <button
-                                    onClick={handleSubmit}
-                                    disabled={loading}
-                                    className={`w-full flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base ${
-                                        loading
-                                            ? 'bg-white/10 text-white/40 cursor-not-allowed'
-                                            : 'bg-white text-black hover:bg-white/90 shadow-lg hover:shadow-white/25'
-                                    }`}
-                                >
-                                    {loading ? (
-                                        <>
-                                            <Loader2 className="w-4 sm:w-5 h-4 sm:h-5 animate-spin" />
-                                            <span>Sending...</span>
-                                        </>
-                                    ) : success ? (
-                                        <>
-                                            <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5" />
-                                            <span>Message Sent!</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Send className="w-4 sm:w-5 h-4 sm:h-5" />
-                                            <span>Send Message</span>
-                                        </>
-                                    )}
-                                </button>
-                            </div>
-                        </div>
-                    </FadeInWhenVisible>
-
-                    {/* Contact Info & Social Links */}
-                    <div className="space-y-6 sm:space-y-8">
-                        {/* Contact Information */}
-                        <FadeInWhenVisible delay={0.3}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
-                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Contact Information</h3>
-                                <div className="space-y-4 sm:space-y-6">
-                                    {contactInfo.map((info, index) => (
-                                        <div key={index} className="flex items-start gap-3 sm:gap-4">
-                                            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center text-red-500 border border-white/20">
-                                                {info.icon}
-                                            </div>
-                                            <div>
-                                                <h4 className="font-semibold text-white text-sm sm:text-base">{info.label}</h4>
-                                                <p className="text-white/80 text-sm sm:text-base">{info.value}</p>
-                                                <p className="text-white/60 text-xs sm:text-sm">{info.subtext}</p>
-                                            </div>
+                                            {info.isAction && (
+                                                <button
+                                                    onClick={() => copyToClipboard(info.value)}
+                                                    className="absolute top-4 right-4 p-2 bg-slate-800/50 hover:bg-indigo-600 text-slate-500 hover:text-white rounded-lg transition-all opacity-0 group-hover/info:opacity-100 z-20"
+                                                    title="Copy to clipboard"
+                                                >
+                                                    {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                                </button>
+                                            )}
                                         </div>
                                     ))}
                                 </div>
-                            </div>
-                        </FadeInWhenVisible>
 
-                        {/* Social Links */}
-                        <FadeInWhenVisible delay={0.4}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:bg-white/10 transition-all duration-300">
-                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Connect With Me</h3>
-                                <div className="grid grid-cols-1 gap-3 sm:gap-4">
-                                    {socialLinks.map((link, index) => (
+                                <div className="flex justify-center gap-5 pt-8 border-t border-white/5">
+                                    {[
+                                        { icon: <Github className="w-5 h-5" />, label: "GitHub", url: "https://github.com/Rexxy31" },
+                                        { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", url: "https://linkedin.com/in/yogeshkumar01" },
+                                        { icon: <Twitter className="w-5 h-5" />, label: "Twitter", url: "https://twitter.com/yogionbirdapp" }
+                                    ].map((link, idx) => (
                                         <a
-                                            key={index}
+                                            key={idx}
                                             href={link.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-red-500 rounded-xl transition-all duration-300 transform hover:scale-105"
+                                            className="w-14 h-14 bg-slate-950/80 hover:bg-indigo-600 text-slate-400 hover:text-white rounded-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg border border-white/5 hover:border-indigo-500 active:scale-95"
+                                            aria-label={link.label}
                                         >
-                                            <div className="w-8 sm:w-10 h-8 sm:h-10 bg-white/10 rounded-lg flex items-center justify-center text-red-500 group-hover:text-red-400 border border-white/20 group-hover:border-red-500 transition-all duration-300">
-                                                {link.icon}
-                                            </div>
-                                            <span className="text-white/80 group-hover:text-white font-medium text-sm sm:text-base">{link.label}</span>
+                                            {link.icon}
                                         </a>
                                     ))}
                                 </div>
                             </div>
-                        </FadeInWhenVisible>
-
-                        {/* Quick Response */}
-                        <FadeInWhenVisible delay={0.5}>
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl text-center hover:bg-white/10 transition-all duration-300">
-                                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                                    <div className="w-2 sm:w-3 h-2 sm:h-3 bg-red-500 rounded-full animate-pulse"></div>
-                                    <span className="font-semibold text-red-500 text-sm sm:text-base">Quick Response</span>
-                                </div>
-                                <p className="text-white/60 text-xs sm:text-sm">
-                                    I typically respond within a few hours during business days
-                                </p>
-                            </div>
-                        </FadeInWhenVisible>
-                    </div>
+                        </div>
+                    </FadeInWhenVisible>
                 </div>
             </div>
         </section>

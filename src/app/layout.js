@@ -62,25 +62,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-        <head>
-            <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-            <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-        </head>
-        <body className="bg-black text-white font-mono selection:bg-red-600 selection:text-white">
-        <Navbar />
-        <Toaster 
-            position="top-right" 
-            toastOptions={{
-                style: {
-                    background: '#111111',
-                    color: '#ffffff',
-                    border: '1px solid #dc2626',
-                },
-            }}
-        />
-        {children}
-        <Footer />
-        </body>
+            <head>
+                <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+                <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+            </head>
+            <body className="bg-slate-950 text-slate-50 selection:bg-indigo-600 selection:text-white">
+                <Navbar />
+                <Toaster
+                    position="top-right"
+                    toastOptions={{
+                        style: {
+                            background: '#1e293b',
+                            color: '#f8fafc',
+                            border: '1px solid #6366f1',
+                        },
+                    }}
+                />
+                {children}
+                <Footer />
+            </body>
         </html>
     );
 }

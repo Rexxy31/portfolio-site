@@ -1,7 +1,7 @@
 const posts = [
     {
         title: "5 Tools Every Beginner Cybersecurity Analyst Should Learn",
-        url: "https://medium.com/@yourusername/5-tools-beginner-cybersec",
+        url: "https://medium.com/@Rexxy31/5-tools-beginner-cybersec",
         date: "2025-06-12",
         category: "tools",
         tags: ["#tools", "#beginner", "#cybersecurity"],
@@ -11,7 +11,7 @@ const posts = [
     },
     {
         title: "What is DNS Spoofing and How to Prevent It",
-        url: "https://medium.com/@yourusername/dns-spoofing-guide",
+        url: "https://medium.com/@Rexxy31/dns-spoofing-guide",
         date: "2025-06-08",
         category: "network-security",
         tags: ["#network", "#attacks", "#dns"],
@@ -21,7 +21,7 @@ const posts = [
     },
     {
         title: "Top OWASP Vulnerabilities Explained",
-        url: "https://medium.com/@yourusername/owasp-top-10-walkthrough",
+        url: "https://medium.com/@Rexxy31/owasp-top-10-walkthrough",
         date: "2025-05-30",
         category: "web-security",
         tags: ["#owasp", "#web", "#vulnerabilities"],
