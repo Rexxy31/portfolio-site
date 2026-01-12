@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: '/api/',
         },
-        sitemap: 'https://yogeshkumar.dev/sitemap.xml',
+        sitemap: 'https://yogeshkumarn.vercel.app/sitemap.xml',
     };
 }
