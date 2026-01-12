@@ -63,8 +63,9 @@ export default function BlogHome() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {displayedPosts.map((post, index) => (
                         <FadeInWhenVisible key={`${activeFilter}-${index}`} delay={index * 0.1}>
-                            <article className="group bg-slate-900 border border-white/5 rounded-[2rem] p-8 flex flex-col h-full transition-all duration-500 hover:bg-slate-800/80 hover:border-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-500/5">
-                                <div className="flex items-center justify-between mb-6">
+                            <a href={post.url} target="_blank" rel="noopener noreferrer" className="group block h-full">
+                                <article className="bg-slate-900 border border-white/5 rounded-[2rem] p-8 flex flex-col h-full transition-all duration-500 hover:bg-slate-800/80 hover:border-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-500/5 cursor-pointer">
+                                    <div className="flex items-center justify-between mb-6">
                                     <span className="px-3 py-1 bg-indigo-500/10 rounded-full text-[10px] font-black text-indigo-400 border border-indigo-500/20 uppercase tracking-widest">
                                         {post.category}
                                     </span>
@@ -92,6 +93,7 @@ export default function BlogHome() {
                                     </div>
                                 </div>
                             </article>
+                            </a>
                         </FadeInWhenVisible>
                     ))}
                 </div>

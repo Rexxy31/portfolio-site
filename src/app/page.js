@@ -22,7 +22,7 @@ export default function Home() {
             <Experience />
             <Projects />
             {/* <Testimonials /> */}
-            <Certifications />
+            {/* <Certifications /> */}
             <Blog />
             <ContactForm />
             <ScrollToTop />

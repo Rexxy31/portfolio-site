@@ -1,15 +1,16 @@
 const experiences = [
     {
         role: "Full-Stack Developer",
-        company: "Invensis | Survey, Settlement and Land Records ",
+        company: "Survey, Settlement and Land Records Department, Govt. of Karnataka | Invensis Technologies Pvt. Ltd.",
         location: "Bengaluru, India",
         duration: "2023 - Present",
         type: "Full-time",
         description: "Architecting enterprise GIS web platforms for state-wide land/lake management initiatives. Building complex spatial data systems and interactive dashboards.",
         highlights: [
-            "Developed GIS Equipment Manager for tracking state-wide survey equipment distribution",
-            "Built Karnataka Lake Statistics platform with Leaflet-based mapping and PostGIS integration",
-            "Implemented automated PDF generation with JTS-processed spatial sketches",
+            "Designed and developed multiple full-stack applications used by government officials and surveyors statewide.",
+            "Built RESTful backend services, database schemas, and frontend dashboards.",
+            "Owned end-to-end development lifecycle: design, implementation, deployment, and maintenance.",
+            "Collaborated directly with stakeholders to translate requirements into scalable technical solutions.",
             "Established CI/CD pipelines with Jenkins and Docker for streamlined deployments"
         ],
         tech: ["Java", "Spring Boot", "Next.js", "PostgreSQL", "PostGIS", "Docker", "Nginx"]
