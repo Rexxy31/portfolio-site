@@ -41,7 +41,7 @@ export default function Hero() {
                 className="max-w-5xl mx-auto text-center relative z-10"
             >
                 {/* Main heading */}
-                <div className="mb-12 h-[120px] md:h-[160px] lg:h-[200px] flex items-center justify-center">
+                <div className="mb-12 h-[150px] md:h-[200px] lg:h-[240px] flex items-center justify-center">
                     <TypeAnimation
                         sequence={[
                             "Software Development Engineer", 3000,
