@@ -10,13 +10,17 @@ This is the personal portfolio of Yogesh Kumar, a web developer and cybersecurit
 
 - **Hero Section**: Animated introduction with typing effects and call-to-action buttons
 - **About**: Detailed journey, skills, and current focus areas
+- **Experience**: Professional work history and roles
 - **Certifications**: Showcase of professional certifications
-- **Projects**: Gallery of web development projects
-- **Blog**: Cybersecurity and development insights
+- **Projects**: Interactive gallery of web development projects with links
+- **Blog**: Technical articles and insights (clickable Medium links)
+- **Testimonials**: Client and colleague feedback
 - **Contact Form**: Direct communication channel
-- **Responsive Design**: Optimized for all devices
-- **Dark Theme**: Modern UI with red accent colors
-- **Animations**: Smooth scroll effects and interactive elements
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Dark Theme**: Modern UI with indigo/blue accent colors
+- **Animations**: Smooth fade-in effects, scroll progress indicator, and scroll-to-top button
+- **Particle Background**: Dynamic visual effects
+- **Navigation**: Sticky navbar with smooth scrolling
 
 ## Tech Stack
 
