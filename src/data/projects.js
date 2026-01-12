@@ -56,23 +56,23 @@ const projects = [
         status: "completed",
         year: "2024"
     },
-    {
-        slug: "network-monitor",
-        title: "Network Monitor",
-        description:
-            "A lightweight tool for monitoring local network traffic and identifying potential vulnerabilities or unusual patterns.",
-        highlights: [
-            "Real-time packet capture and analysis",
-            "Anomaly detection for suspicious traffic patterns",
-            "Visual network topology mapping",
-            "Export reports for security audits"
-        ],
-        tech: ["Python", "Flask", "Scapy"],
-        github: "https://github.com/Rexxy31/net-mon",
-        category: "Security",
-        status: "planned",
-        year: "2025"
-    }
+    // {
+    //     slug: "network-monitor",
+    //     title: "Network Monitor",
+    //     description:
+    //         "A lightweight tool for monitoring local network traffic and identifying potential vulnerabilities or unusual patterns.",
+    //     highlights: [
+    //         "Real-time packet capture and analysis",
+    //         "Anomaly detection for suspicious traffic patterns",
+    //         "Visual network topology mapping",
+    //         "Export reports for security audits"
+    //     ],
+    //     tech: ["Python", "Flask", "Scapy"],
+    //     github: "https://github.com/Rexxy31/net-mon",
+    //     category: "Security",
+    //     status: "planned",
+    //     year: "2025"
+    // }
 ];
 
 export default projects;

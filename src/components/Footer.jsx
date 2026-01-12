@@ -94,18 +94,16 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-slate-500 text-sm font-medium flex items-center gap-2">
-                        © {currentYear} Yogesh Kumar. Built with
-                        <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-                        using Next.js
+                        © {currentYear} Yogesh Kumar. All rights reserved.
                     </p>
 
-                    <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+                    {/* <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
                         <span className="hover:text-indigo-400 cursor-default transition-colors">Clean Code</span>
                         <div className="w-1 h-1 bg-slate-800 rounded-full" />
                         <span className="hover:text-indigo-400 cursor-default transition-colors">Scalable</span>
                         <div className="w-1 h-1 bg-slate-800 rounded-full" />
                         <span className="hover:text-indigo-400 cursor-default transition-colors">Secure</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </footer>

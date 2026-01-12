@@ -87,7 +87,7 @@ export default function BlogHome() {
                                     <div className="flex flex-wrap gap-2">
                                         {post.tags.slice(0, 3).map(tag => (
                                             <span key={tag} className="flex items-center gap-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider bg-slate-950 px-2 py-1 rounded-md border border-white/[0.03]">
-                                                # {tag}
+                                                {tag}
                                             </span>
                                         ))}
                                     </div>

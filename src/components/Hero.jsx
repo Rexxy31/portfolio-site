@@ -44,10 +44,10 @@ export default function Hero() {
                 <div className="mb-8 h-[80px] md:h-[120px] flex items-center justify-center">
                     <TypeAnimation
                         sequence={[
-                            "Software Engineer", 3000,
-                            "Solutions Architect", 3000,
-                            "Cybersecurity Enthusiast", 3000,
-                            "GIS Specialist", 3000,
+                            "Software Development Engineer", 3000,
+                            "End-to-End Systems Builder", 3000,
+                            "From Idea to Production", 3000,
+
                         ]}
                         wrapper="h1"
                         speed={60}
