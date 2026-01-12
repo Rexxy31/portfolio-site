@@ -56,8 +56,8 @@ export default function NotFound() {
                     transition={{ delay: 0.5 }}
                     className="text-slate-400 text-lg mb-10 leading-relaxed"
                 >
-                    The page you're looking for seems to have wandered into the void.
-                    Let's get you back on track.
+                    The page you&apos;re looking for seems to have wandered into the void.
+                    Let&apos;s get you back on track.
                 </motion.p>
 
                 {/* CTAs */}
@@ -97,8 +97,8 @@ export default function NotFound() {
                     </div>
                     <code className="text-slate-400">
                         <span className="text-indigo-400">const</span> page = <span className="text-green-400">await</span> findPage(<span className="text-amber-400">url</span>);{"\n"}
-                        <span className="text-slate-500">// Error: Page not found in route map</span>{"\n"}
-                        <span className="text-indigo-400">throw new</span> <span className="text-red-400">NotFoundError</span>(<span className="text-amber-400">"404"</span>);
+                        <span className="text-slate-500">{"// Error: Page not found in route map"}</span>{"\n"}
+                        <span className="text-indigo-400">throw new</span> <span className="text-red-400">NotFoundError</span>(<span className="text-amber-400">&quot;404&quot;</span>);
                     </code>
                 </motion.div>
             </motion.div>
