@@ -1,9 +1,10 @@
 const projects = [
     {
+        slug: "gis-equipment-manager",
         title: "GIS Equipment Manager",
         description:
             "A comprehensive enterprise web application for managing the distribution, tracking, and auditing of GIS equipment for government surveyors in Karnataka. Facilitates state-wide logistics and real-time inventory monitoring.",
-        features: [
+        highlights: [
             "Real-time distribution & return tracking",
             "Automated audit logging and transaction history",
             "Bulk data import/export (CSV) and PDF report generation",
@@ -15,13 +16,14 @@ const projects = [
         featured: true,
         status: "completed",
         year: "2024",
-        github: "#" // Private repo (work)
+        github: "#"
     },
     {
+        slug: "karnataka-lake-statistics",
         title: "Karnataka Lake Statistics",
         description:
             "A high-performance GIS platform for the Survey Settlement And Land Records Department. Provides statistical insights and geographical analysis of lakes across Karnataka using advanced spatial data visualization.",
-        features: [
+        highlights: [
             "Leaflet-based interactive mapping with Google Satellite & WMS integration",
             "Hierarchical geographical filtering (Village to District level)",
             "Automated PDF abstract generation with JTS-processed spatial sketches",
@@ -33,14 +35,21 @@ const projects = [
         featured: true,
         status: "completed",
         year: "2025",
-        github: "#" // Private repo (work)
+        github: "#"
     },
     {
+        slug: "ceh-practice-lab",
         title: "CEH Practice Lab",
         description:
             "A custom-built web app to help me prepare for the Certified Ethical Hacker (CEH) exam. Features interactive quizzes, progress tracking, and security-themed UI.",
+        highlights: [
+            "Interactive quiz interface with timed assessments",
+            "Progress tracking and performance analytics",
+            "Security-themed dark mode UI",
+            "Category-based question filtering"
+        ],
         tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind"],
-        visit: "https://ceh-quiz-app.vercel.app/",
+        demo: "https://ceh-quiz-app.vercel.app/",
         github: "https://github.com/Rexxy31/Quiz-App",
         category: "Security",
         featured: true,
@@ -48,9 +57,16 @@ const projects = [
         year: "2024"
     },
     {
+        slug: "network-monitor",
         title: "Network Monitor",
         description:
             "A lightweight tool for monitoring local network traffic and identifying potential vulnerabilities or unusual patterns.",
+        highlights: [
+            "Real-time packet capture and analysis",
+            "Anomaly detection for suspicious traffic patterns",
+            "Visual network topology mapping",
+            "Export reports for security audits"
+        ],
         tech: ["Python", "Flask", "Scapy"],
         github: "https://github.com/Rexxy31/net-mon",
         category: "Security",

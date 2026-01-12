@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import projects from "@/data/projects";
 import ProjectCard from "./ProjectCard";
 import FadeInWhenVisible from "./FadeInWhenVisible";
@@ -59,13 +60,25 @@ export default function Projects() {
 
                 {/* Projects Grid */}
                 <div className="mb-12">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {displayedProjects.map((project, index) => (
-                            <FadeInWhenVisible key={`${activeFilter}-${index}`} delay={index * 0.1}>
-                                <ProjectCard project={project} />
-                            </FadeInWhenVisible>
-                        ))}
-                    </div>
+                    <motion.div
+                        layout
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {displayedProjects.map((project, index) => (
+                                <motion.div
+                                    key={`${project.title}-${activeFilter}`}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                                >
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
 
                     {/* Load More Button */}
                     {filteredProjects.length > 6 && (

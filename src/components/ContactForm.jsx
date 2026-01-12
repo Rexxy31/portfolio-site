@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import {
     Mail,
     MapPin,
@@ -9,13 +11,46 @@ import {
     Twitter,
     Copy,
     Check,
-    ArrowRight
+    ArrowRight,
+    Send,
+    User,
+    MessageSquare,
+    Loader2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FadeInWhenVisible from "./FadeInWhenVisible";
 
 export default function ContactForm() {
     const [copied, setCopied] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [focused, setFocused] = useState({ name: false, email: false, message: false });
+
+    // Watch form values for floating label behavior
+    const watchName = watch("name", "");
+    const watchEmail = watch("email", "");
+    const watchMessage = watch("message", "");
+
+    const onSubmit = async (data) => {
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                toast.success('Message sent successfully!');
+                reset();
+            } else {
+                toast.error('Failed to send message.');
+            }
+        } catch (error) {
+            toast.error('An error occurred.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const contactInfo = [
         {
@@ -37,8 +72,12 @@ export default function ContactForm() {
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text);
         setCopied(true);
+        toast.success('Email copied to clipboard!');
         setTimeout(() => setCopied(false), 2000);
     };
+
+    // Check if label should float (focused or has value)
+    const shouldFloat = (fieldName, value) => focused[fieldName] || value?.length > 0;
 
     return (
         <section id="contact" className="scroll-mt-24 py-20 sm:py-32 bg-slate-950 px-4 sm:px-6 relative overflow-hidden">
@@ -46,9 +85,9 @@ export default function ContactForm() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[160px] rounded-full pointer-events-none" />
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2" />
 
-            <div className="max-w-4xl mx-auto relative z-10">
+            <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="text-center mb-20 sm:mb-24">
+                <div className="text-center mb-16 sm:mb-20">
                     <FadeInWhenVisible>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
@@ -67,51 +106,207 @@ export default function ContactForm() {
                     </FadeInWhenVisible>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+                    {/* Contact Form */}
                     <FadeInWhenVisible delay={0.1}>
-                        <div className="bg-slate-900 border border-white/[0.08] rounded-[3rem] p-1 sm:p-2 shadow-2xl relative overflow-hidden group w-full max-w-xl mx-auto backdrop-blur-xl">
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+                        <div className="bg-slate-900 border border-white/5 rounded-[2.5rem] p-8 sm:p-10 shadow-2xl">
+                            <h3 className="text-[10px] font-black text-slate-500 mb-8 border-b border-white/5 pb-6 uppercase tracking-[0.3em]">
+                                Send a Message
+                            </h3>
 
-                            <div className="bg-slate-900/80 rounded-[2.5rem] p-8 sm:p-10 relative z-10">
-                                <h3 className="text-[10px] font-black text-slate-500 mb-10 border-b border-white/5 pb-6 text-center uppercase tracking-[0.4em]">Official Handshake</h3>
-
-                                <div className="space-y-4 mb-10">
-                                    {contactInfo.map((info, idx) => (
-                                        <div key={idx} className="relative group/info">
-                                            <a
-                                                href={info.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex flex-col sm:flex-row items-center sm:items-start gap-5 p-5 bg-slate-950/40 rounded-3xl border border-white/5 hover:border-indigo-500/40 hover:bg-slate-950 transition-all duration-300 w-full group-hover/info:shadow-lg group-hover/info:shadow-indigo-500/5"
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                                {/* Name Field - Floating Label */}
+                                <div className="relative">
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        className={`peer w-full px-5 pt-7 pb-3 bg-slate-950/60 border rounded-2xl text-white focus:outline-none transition-all duration-300 ${errors.name
+                                                ? 'border-red-500/50 focus:border-red-500/50'
+                                                : 'border-white/10 focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/20'
+                                            }`}
+                                        {...register("name", {
+                                            required: "Name is required",
+                                            minLength: { value: 2, message: "Name must be at least 2 characters" }
+                                        })}
+                                        onFocus={() => setFocused(prev => ({ ...prev, name: true }))}
+                                        onBlur={() => setFocused(prev => ({ ...prev, name: false }))}
+                                        aria-invalid={errors.name ? "true" : "false"}
+                                    />
+                                    <label
+                                        htmlFor="name"
+                                        className={`absolute left-5 flex items-center gap-2 transition-all duration-300 pointer-events-none ${shouldFloat('name', watchName)
+                                                ? 'top-2 text-[10px] font-black uppercase tracking-[0.15em] text-indigo-400'
+                                                : 'top-1/2 -translate-y-1/2 text-sm text-slate-500'
+                                            }`}
+                                    >
+                                        <User className="w-3.5 h-3.5" />
+                                        Full Name
+                                    </label>
+                                    <AnimatePresence>
+                                        {errors.name && (
+                                            <motion.p
+                                                initial={{ opacity: 0, y: -5 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -5 }}
+                                                className="text-red-400 text-xs mt-2 font-medium ml-2"
                                             >
-                                                <div className="w-14 h-14 bg-indigo-500/5 group-hover/info:bg-indigo-600 rounded-[1.25rem] flex items-center justify-center text-indigo-400 group-hover/info:text-white border border-indigo-500/10 group-hover/info:border-indigo-500 transition-all duration-500 flex-shrink-0">
-                                                    {info.icon}
-                                                </div>
-                                                <div className="text-center sm:text-left overflow-hidden w-full flex-grow py-1">
-                                                    <div className="text-[9px] font-black text-slate-500 uppercase tracking-[0.25em] mb-1.5 opacity-80">{info.label}</div>
-                                                    <div className="text-white font-bold tracking-tight text-sm sm:text-base break-all sm:break-normal">
-                                                        {info.value}
-                                                    </div>
-                                                </div>
-                                                <div className="hidden sm:flex items-center text-slate-700 group-hover/info:text-indigo-400 transition-colors">
-                                                    <ArrowRight className="w-5 h-5 opacity-40 group-hover/info:opacity-100 group-hover/info:translate-x-1 transition-all" />
-                                                </div>
-                                            </a>
-
-                                            {info.isAction && (
-                                                <button
-                                                    onClick={() => copyToClipboard(info.value)}
-                                                    className="absolute top-4 right-4 p-2 bg-slate-800/50 hover:bg-indigo-600 text-slate-500 hover:text-white rounded-lg transition-all opacity-0 group-hover/info:opacity-100 z-20"
-                                                    title="Copy to clipboard"
-                                                >
-                                                    {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                                                </button>
-                                            )}
-                                        </div>
-                                    ))}
+                                                {errors.name.message}
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
-                                <div className="flex justify-center gap-5 pt-8 border-t border-white/5">
+                                {/* Email Field - Floating Label */}
+                                <div className="relative">
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        className={`peer w-full px-5 pt-7 pb-3 bg-slate-950/60 border rounded-2xl text-white focus:outline-none transition-all duration-300 ${errors.email
+                                                ? 'border-red-500/50 focus:border-red-500/50'
+                                                : 'border-white/10 focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/20'
+                                            }`}
+                                        {...register("email", {
+                                            required: "Email is required",
+                                            pattern: {
+                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                message: "Invalid email address"
+                                            }
+                                        })}
+                                        onFocus={() => setFocused(prev => ({ ...prev, email: true }))}
+                                        onBlur={() => setFocused(prev => ({ ...prev, email: false }))}
+                                        aria-invalid={errors.email ? "true" : "false"}
+                                    />
+                                    <label
+                                        htmlFor="email"
+                                        className={`absolute left-5 flex items-center gap-2 transition-all duration-300 pointer-events-none ${shouldFloat('email', watchEmail)
+                                                ? 'top-2 text-[10px] font-black uppercase tracking-[0.15em] text-indigo-400'
+                                                : 'top-1/2 -translate-y-1/2 text-sm text-slate-500'
+                                            }`}
+                                    >
+                                        <Mail className="w-3.5 h-3.5" />
+                                        Email Address
+                                    </label>
+                                    <AnimatePresence>
+                                        {errors.email && (
+                                            <motion.p
+                                                initial={{ opacity: 0, y: -5 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -5 }}
+                                                className="text-red-400 text-xs mt-2 font-medium ml-2"
+                                            >
+                                                {errors.email.message}
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Message Field - Floating Label */}
+                                <div className="relative">
+                                    <textarea
+                                        id="message"
+                                        rows={5}
+                                        className={`peer w-full px-5 pt-8 pb-3 bg-slate-950/60 border rounded-2xl text-white focus:outline-none resize-none transition-all duration-300 ${errors.message
+                                                ? 'border-red-500/50 focus:border-red-500/50'
+                                                : 'border-white/10 focus:border-indigo-500/50 focus:ring-2 focus:ring-indigo-500/20'
+                                            }`}
+                                        {...register("message", {
+                                            required: "Message is required",
+                                            minLength: { value: 10, message: "Message must be at least 10 characters" }
+                                        })}
+                                        onFocus={() => setFocused(prev => ({ ...prev, message: true }))}
+                                        onBlur={() => setFocused(prev => ({ ...prev, message: false }))}
+                                        aria-invalid={errors.message ? "true" : "false"}
+                                    />
+                                    <label
+                                        htmlFor="message"
+                                        className={`absolute left-5 flex items-center gap-2 transition-all duration-300 pointer-events-none ${shouldFloat('message', watchMessage)
+                                                ? 'top-2 text-[10px] font-black uppercase tracking-[0.15em] text-indigo-400'
+                                                : 'top-5 text-sm text-slate-500'
+                                            }`}
+                                    >
+                                        <MessageSquare className="w-3.5 h-3.5" />
+                                        Your Message
+                                    </label>
+                                    <AnimatePresence>
+                                        {errors.message && (
+                                            <motion.p
+                                                initial={{ opacity: 0, y: -5 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -5 }}
+                                                className="text-red-400 text-xs mt-2 font-medium ml-2"
+                                            >
+                                                {errors.message.message}
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-3 group focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                >
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 className="w-5 h-5 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                            Send Message
+                                        </>
+                                    )}
+                                </button>
+                            </form>
+                        </div>
+                    </FadeInWhenVisible>
+
+                    {/* Contact Info Card */}
+                    <FadeInWhenVisible delay={0.2}>
+                        <div className="bg-slate-900 border border-white/5 rounded-[2.5rem] p-8 sm:p-10 shadow-2xl h-fit">
+                            <h3 className="text-[10px] font-black text-slate-500 mb-8 border-b border-white/5 pb-6 uppercase tracking-[0.3em]">
+                                Quick Connect
+                            </h3>
+
+                            <div className="space-y-4 mb-10">
+                                {contactInfo.map((info, idx) => (
+                                    <div key={idx} className="relative group/info">
+                                        <a
+                                            href={info.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-5 p-5 bg-slate-950/40 rounded-2xl border border-white/5 hover:border-indigo-500/40 hover:bg-slate-950 transition-all duration-300 w-full group-hover/info:shadow-lg group-hover/info:shadow-indigo-500/5"
+                                        >
+                                            <div className="w-12 h-12 bg-indigo-500/5 group-hover/info:bg-indigo-600 rounded-xl flex items-center justify-center text-indigo-400 group-hover/info:text-white border border-indigo-500/10 group-hover/info:border-indigo-500 transition-all duration-500 flex-shrink-0">
+                                                {info.icon}
+                                            </div>
+                                            <div className="flex-grow">
+                                                <div className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-1">{info.label}</div>
+                                                <div className="text-white font-bold tracking-tight text-sm">{info.value}</div>
+                                            </div>
+                                            <ArrowRight className="w-5 h-5 text-slate-700 group-hover/info:text-indigo-400 group-hover/info:translate-x-1 transition-all" />
+                                        </a>
+
+                                        {info.isAction && (
+                                            <button
+                                                onClick={() => copyToClipboard(info.value)}
+                                                className="absolute top-4 right-4 p-2 bg-slate-800/50 hover:bg-indigo-600 text-slate-500 hover:text-white rounded-lg transition-all opacity-0 group-hover/info:opacity-100 z-20"
+                                                title="Copy to clipboard"
+                                                aria-label="Copy email to clipboard"
+                                            >
+                                                {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Social Links */}
+                            <div className="pt-8 border-t border-white/5">
+                                <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-5 text-center">Find Me Online</p>
+                                <div className="flex justify-center gap-4">
                                     {[
                                         { icon: <Github className="w-5 h-5" />, label: "GitHub", url: "https://github.com/Rexxy31" },
                                         { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", url: "https://linkedin.com/in/yogeshkumar01" },
@@ -122,7 +317,7 @@ export default function ContactForm() {
                                             href={link.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-14 h-14 bg-slate-950/80 hover:bg-indigo-600 text-slate-400 hover:text-white rounded-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg border border-white/5 hover:border-indigo-500 active:scale-95"
+                                            className="w-12 h-12 bg-slate-950/80 hover:bg-indigo-600 text-slate-400 hover:text-white rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 border border-white/5 hover:border-indigo-500"
                                             aria-label={link.label}
                                         >
                                             {link.icon}

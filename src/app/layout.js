@@ -65,8 +65,31 @@ export default function RootLayout({ children }) {
             <head>
                 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
                 <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "Person",
+                            "name": "Yogesh Kumar",
+                            "jobTitle": "Software Engineer",
+                            "url": "https://yogeshkumar.dev",
+                            "sameAs": [
+                                "https://github.com/Rexxy31"
+                            ],
+                            "knowsAbout": ["Cybersecurity", "Web Development", "Full-Stack Engineering", "GIS", "Solutions Architecture"]
+                        })
+                    }}
+                />
             </head>
             <body className="bg-slate-950 text-slate-50 selection:bg-indigo-600 selection:text-white">
+                {/* Skip to main content link for accessibility */}
+                <a
+                    href="#main-content"
+                    className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:outline-none"
+                >
+                    Skip to main content
+                </a>
                 <Navbar />
                 <Toaster
                     position="top-right"
@@ -78,7 +101,9 @@ export default function RootLayout({ children }) {
                         },
                     }}
                 />
-                {children}
+                <div id="main-content">
+                    {children}
+                </div>
                 <Footer />
             </body>
         </html>

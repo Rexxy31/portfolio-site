@@ -1,20 +1,22 @@
+"use client";
+
 import FadeInWhenVisible from "./FadeInWhenVisible";
 import { Database, Code2, Layout, Zap } from "lucide-react";
 
 export default function About() {
     const skills = [
         {
-            category: "Backend & GIS",
+            category: "Backend",
             items: ["Java", "Spring Boot", "Node.js", "PostgreSQL/PostGIS"],
             icon: <Database className="w-5 h-5 text-indigo-500" />
         },
         {
-            category: "Frontend & UI",
+            category: "Frontend",
             items: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
             icon: <Layout className="w-5 h-5 text-blue-500" />
         },
         {
-            category: "DevOps & Infrastructure",
+            category: "DevOps",
             items: ["Docker", "Jenkins", "Nginx", "Linux/Security"],
             icon: <Zap className="w-5 h-5 text-indigo-400" />
         }
@@ -36,12 +38,11 @@ export default function About() {
                 {/* Header Section */}
                 <div className="text-center mb-12 sm:mb-20">
                     <FadeInWhenVisible>
-                        <div className="inline-flex items-center gap-4 mb-6">
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
-                                About <span className="text-indigo-500">Me</span>
-                            </h2>
-                        </div>
-                        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight mb-6">
+                            About <span className="text-indigo-500">Me</span>
+                        </h2>
+                        <div className="w-24 h-1.5 bg-indigo-600 mx-auto rounded-full mb-8 shadow-[0_0_15px_rgba(99,102,241,0.4)]" />
+                        <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
                             Passionate about building software that is as secure as it is functional.
                         </p>
                     </FadeInWhenVisible>
@@ -87,7 +88,7 @@ export default function About() {
                         <div className="grid sm:grid-cols-2 gap-6">
                             {skills.map((skillGroup, index) => (
                                 <FadeInWhenVisible key={index} delay={0.3 + index * 0.1}>
-                                    <div className="p-8 bg-slate-900 border border-white/5 rounded-3xl hover:border-indigo-500/30 transition-all duration-500 group">
+                                    <div className="p-8 bg-slate-900 border border-white/5 rounded-3xl hover:border-indigo-500/30 transition-all duration-500 group h-full">
                                         <div className="flex items-center gap-4 mb-6">
                                             <div className="p-2.5 bg-slate-800 rounded-xl group-hover:scale-110 group-hover:bg-slate-700 transition-all duration-300">
                                                 {skillGroup.icon}
@@ -121,15 +122,18 @@ export default function About() {
                                     <p className="text-slate-300 text-sm mb-6 leading-relaxed">
                                         Seeking challenging roles in Full-Stack Engineering & Solutions Architecture.
                                     </p>
-                                    <button className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl text-sm uppercase tracking-widest hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-600/20 transition-all duration-300">
+                                    <a
+                                        href="#contact"
+                                        className="block w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl text-sm uppercase tracking-widest hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-600/20 transition-all duration-300 text-center focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                                    >
                                         Hire Me
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </FadeInWhenVisible>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-2 gap-4">
+                        {/* <div className="grid grid-cols-2 gap-4">
                             {stats.map((stat, index) => (
                                 <FadeInWhenVisible key={index} delay={0.6 + index * 0.1}>
                                     <div className="text-center p-6 bg-slate-900 rounded-3xl border border-white/5 hover:bg-slate-800 transition-all duration-300">
@@ -138,7 +142,7 @@ export default function About() {
                                     </div>
                                 </FadeInWhenVisible>
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { Code, Cpu, Layers, ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 
 export default function Hero() {
     const containerVariants = {
@@ -40,25 +40,14 @@ export default function Hero() {
                 animate="visible"
                 className="max-w-5xl mx-auto text-center relative z-10"
             >
-                {/* Visual Accent */}
-                {/* <motion.div variants={itemVariants} className="flex justify-center gap-4 sm:gap-6 mb-10">
-                    <div className="p-3 sm:p-4 bg-slate-900 border border-white/5 rounded-2xl shadow-xl">
-                        <Code className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" />
-                    </div>
-                    <div className="p-3 sm:p-4 bg-slate-900 border border-white/5 rounded-2xl shadow-xl mt-4">
-                        <Cpu className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
-                    </div>
-                    <div className="p-3 sm:p-4 bg-slate-900 border border-white/5 rounded-2xl shadow-xl">
-                        <Layers className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400" />
-                    </div>
-                </motion.div> */}
-
                 {/* Main heading */}
                 <div className="mb-8 h-[80px] md:h-[120px] flex items-center justify-center">
                     <TypeAnimation
                         sequence={[
                             "Software Engineer", 3000,
                             "Solutions Architect", 3000,
+                            "Cybersecurity Enthusiast", 3000,
+                            "GIS Specialist", 3000,
                         ]}
                         wrapper="h1"
                         speed={60}
@@ -77,25 +66,35 @@ export default function Hero() {
                 {/* Status indicator */}
                 <motion.div variants={itemVariants} className="mb-12">
                     <div className="inline-flex items-center gap-3 px-6 py-2 bg-indigo-500/5 border border-indigo-500/10 rounded-full backdrop-blur-md">
-                        <div className="w-2 h-2 bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]" />
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)] animate-pulse" />
                         <span className="text-indigo-200/80 text-xs sm:text-sm font-medium tracking-wide">Available for Full-Stack Engineering Roles</span>
                     </div>
                 </motion.div>
 
                 {/* CTAs */}
-                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4">
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 px-4 flex-wrap">
                     <a
                         href="#projects"
-                        className="group relative px-10 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-indigo-600/20 flex items-center gap-2 w-full sm:w-auto justify-center"
+                        className="group relative px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-indigo-600/20 flex items-center gap-2 w-full sm:w-auto justify-center focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                     >
                         <span>View Projects</span>
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a
+                        href="/Yogesh_Kumar_CV.pdf"
+                        download
+                        className="group px-8 py-4 bg-slate-900 border border-indigo-500/30 hover:bg-indigo-600 hover:border-indigo-500 text-indigo-400 hover:text-white font-bold rounded-2xl transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-950"
+                    >
+                        <svg className="w-5 h-5 transition-transform group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Download CV</span>
+                    </a>
+                    <a
                         href="https://github.com/Rexxy31"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group px-10 py-4 bg-slate-900 border border-white/5 hover:border-indigo-500/30 text-slate-300 hover:text-white font-bold rounded-2xl transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
+                        className="group px-8 py-4 bg-slate-900 border border-white/5 hover:border-indigo-500/30 text-slate-300 hover:text-white font-bold rounded-2xl transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-950"
                     >
                         <Github className="w-5 h-5 transition-transform group-hover:scale-110" />
                         <span>GitHub</span>

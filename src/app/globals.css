@@ -4,20 +4,25 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Color Scheme - Dark Theme */
 :root {
   --accent-primary: #6366f1;
-  /* Indigo 500 */
   --accent-secondary: #818cf8;
-  /* Indigo 400 */
   --bg-dark: #0f172a;
-  /* Slate 900 */
   --bg-card: #1e293b;
-  /* Slate 800 */
+  --bg-card-hover: #334155;
   --text-primary: #f8fafc;
-  /* Slate 50 */
   --text-secondary: #94a3b8;
-  /* Slate 400 */
+  --text-muted: #64748b;
   --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(99, 102, 241, 0.3);
+
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --accent: #1e293b;
+  --accent-foreground: #ffffff;
 }
 
 body {
@@ -33,15 +38,6 @@ body {
 }
 
 @layer base {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
-    --accent: #1e293b;
-    --accent-foreground: #ffffff;
-  }
-
   * {
     border-color: var(--border-subtle);
   }
@@ -93,51 +89,6 @@ body {
 ::selection {
   background-color: var(--accent-primary);
   color: #ffffff;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-gray-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-yellow);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-yellow-dark);
-}
-
-/* Selection styles */
-::selection {
-  background-color: var(--accent-yellow);
-  color: var(--bg-black);
-}
-
-/* Custom utility classes */
-.text-yellow-glow {
-  text-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-yellow), 0 0 30px var(--accent-yellow);
-}
-
-.border-yellow-glow {
-  box-shadow: 0 0 10px var(--accent-yellow), 0 0 20px var(--accent-yellow);
-}
-
-.bg-yellow-gradient {
-  background: linear-gradient(135deg, var(--accent-yellow-dark), var(--accent-yellow), var(--accent-yellow-light));
-}
-
-.bg-yellow-subtle {
-  background: rgba(255, 224, 102, 0.08);
-}
-
-.bg-yellow-subtle-hover:hover {
-  background: rgba(255, 224, 102, 0.16);
 }
 
 /* Animation for terminal-like blinking cursor */
