@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles, FileDown } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -55,6 +55,14 @@ export default function Hero() {
               View Projects
             </a>
             <a
+              href="/Yogesh_Kumar_CV.pdf"
+              download="Yogesh_Kumar_CV.pdf"
+              className="btn-sketchy btn-sketchy-secondary text-lg md:text-xl"
+            >
+              <FileDown size={20} strokeWidth={2.5} />
+              Download CV
+            </a>
+            <a
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
@@ -62,7 +70,7 @@ export default function Hero() {
                   .querySelector("#contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="btn-sketchy btn-sketchy-secondary text-lg md:text-xl"
+              className="btn-sketchy text-lg md:text-xl bg-paper"
             >
               Contact Me
             </a>
@@ -70,7 +78,7 @@ export default function Hero() {
 
           {/* Hand-drawn arrow pointing to CTA */}
           <svg
-            className="hidden md:block absolute -bottom-8 left-48 w-24 h-16 text-pencil"
+            className="hidden md:block absolute -bottom-8 left-64 w-24 h-16 text-pencil pointer-events-none"
             viewBox="0 0 100 60"
             fill="none"
           >

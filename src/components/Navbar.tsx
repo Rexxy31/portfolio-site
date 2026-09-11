@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Pencil } from "lucide-react";
+import { Menu, X, FileDown } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -77,7 +77,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <button
               key={link.href}
@@ -90,6 +90,20 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+
+          <a
+            href="/Yogesh_Kumar_CV.pdf"
+            download="Yogesh_Kumar_CV.pdf"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 border-2 border-pencil font-body text-base text-pencil bg-postit transition-all hover:bg-accent hover:text-white hover:border-accent hover:scale-105 active:scale-95"
+            style={{
+              borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
+              boxShadow: "2px 2px 0px 0px #2d2d2d",
+              transform: "rotate(-1deg)",
+            }}
+          >
+            <FileDown size={16} strokeWidth={2.5} />
+            CV
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -125,6 +139,19 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+          <a
+            href="/Yogesh_Kumar_CV.pdf"
+            download="Yogesh_Kumar_CV.pdf"
+            onClick={() => setIsOpen(false)}
+            className="inline-flex items-center gap-2 px-4 py-2 border-2 border-pencil font-body text-lg text-pencil bg-postit"
+            style={{
+              borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
+              boxShadow: "3px 3px 0px 0px #2d2d2d",
+            }}
+          >
+            <FileDown size={18} strokeWidth={2.5} />
+            Download CV
+          </a>
         </div>
       </div>
     </nav>
