@@ -292,7 +292,7 @@ function ProjectDetailModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8"
       onClick={onClose}
     >
       {/* Backdrop */}
@@ -300,42 +300,43 @@ function ProjectDetailModal({
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-paper border-3 border-pencil p-6 md:p-10"
+        className="relative w-full max-w-3xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto bg-paper border-3 border-pencil p-4 sm:p-6 md:p-10"
         style={{
           borderRadius: "15px 225px 15px 255px / 255px 15px 225px 15px",
-          boxShadow: "8px 8px 0px 0px #2d2d2d",
+          boxShadow: "6px 6px 0px 0px #2d2d2d",
         }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 border-2 border-pencil bg-white flex items-center justify-center cursor-pointer hover:bg-accent hover:text-white hover:border-accent transition-all"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil bg-white flex items-center justify-center cursor-pointer hover:bg-accent hover:text-white hover:border-accent active:scale-95 transition-all shadow-[2px_2px_0px_0px_#2d2d2d]"
           style={{
             borderRadius: "255px 15px 225px 15px / 15px 225px 15px 255px",
           }}
+          aria-label="Close dialog"
         >
           <X size={18} strokeWidth={2.5} />
         </button>
 
         {/* Header */}
-        <div className="flex items-start gap-3 mb-6">
+        <div className="flex items-start gap-3 mb-5 sm:mb-6 pr-10">
           <span
-            className="inline-flex items-center justify-center w-12 h-12 border-2 border-pencil bg-white shrink-0 rough-circle"
-            style={{ boxShadow: "3px 3px 0px 0px #2d2d2d" }}
+            className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 border-2 border-pencil bg-white shrink-0 rough-circle"
+            style={{ boxShadow: "2px 2px 0px 0px #2d2d2d" }}
           >
             <project.icon
-              size={22}
+              size={20}
               strokeWidth={2.5}
               className={project.featured ? "text-accent" : "text-pen-blue"}
             />
           </span>
           <div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-pencil leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-pencil leading-tight">
               {project.title}
             </h2>
             {project.featured && (
-              <span className="text-xs font-body text-accent uppercase tracking-wide">
+              <span className="text-[11px] sm:text-xs font-body text-accent uppercase tracking-wide">
                 ★ Production System
               </span>
             )}
@@ -343,18 +344,18 @@ function ProjectDetailModal({
         </div>
 
         {/* Overview */}
-        <div className="mb-6">
+        <div className="mb-5 sm:mb-6">
           <div className="flex items-center gap-2 mb-2">
             <Lightbulb size={16} strokeWidth={2.5} className="text-accent" />
-            <h3 className="text-lg font-heading font-bold text-pencil">
+            <h3 className="text-base sm:text-lg font-heading font-bold text-pencil">
               Overview
             </h3>
           </div>
-          <p className="text-base md:text-lg font-body text-pencil/80 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg font-body text-pencil/80 leading-relaxed">
             {project.detail.overview}
           </p>
           {project.detail.problem && (
-            <p className="text-sm md:text-base font-body text-pencil/65 leading-relaxed mt-2 italic">
+            <p className="text-xs sm:text-sm md:text-base font-body text-pencil/65 leading-relaxed mt-2 italic">
               <strong>Context / Purpose:</strong> {project.detail.problem}
             </p>
           )}
@@ -463,17 +464,17 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="py-20 px-6">
+      <section id="projects" className="py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
         <div className="max-w-5xl mx-auto">
           {/* Section header */}
-          <div className="flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-10 h-10 border-2 border-pencil rough-circle bg-postit">
-              <FolderOpen size={20} strokeWidth={2.5} />
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+            <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil rough-circle bg-postit">
+              <FolderOpen size={18} strokeWidth={2.5} />
             </span>
-            <span className="sticky-tag text-xl">Projects</span>
+            <span className="sticky-tag text-lg sm:text-xl">Projects</span>
           </div>
 
-          <p className="text-lg font-body text-pencil/60 mb-10 max-w-2xl">
+          <p className="text-base sm:text-lg font-body text-pencil/60 mb-8 sm:mb-10 max-w-2xl">
             Production systems built for government departments — handling real
             data, real users, and real scale across Karnataka.
           </p>
@@ -494,23 +495,23 @@ export default function Projects() {
           </svg>
 
           {/* Projects grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {projects.map((project) => (
               <div
                 key={project.id}
                 className={`${project.featured ? "card-postit" : "card-sketchy"
                   } ${project.decoration === "tape" ? "tape" : ""} ${project.decoration === "tack" ? "tack" : ""
-                  } p-6 md:p-8 transition-all duration-100 hover:shadow-hard group`}
+                  } p-5 sm:p-6 md:p-8 transition-all duration-100 hover:shadow-hard group`}
                 style={{ transform: `rotate(${project.rotation})` }}
               >
                 {/* Icon + Title */}
                 <div className="flex items-start gap-3 mb-3">
                   <span
-                    className="inline-flex items-center justify-center w-11 h-11 border-2 border-pencil bg-white shrink-0 rough-circle"
+                    className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 border-2 border-pencil bg-white shrink-0 rough-circle"
                     style={{ boxShadow: "2px 2px 0px 0px #2d2d2d" }}
                   >
                     <project.icon
-                      size={20}
+                      size={18}
                       strokeWidth={2.5}
                       className={
                         project.featured ? "text-accent" : "text-pen-blue"
@@ -518,11 +519,11 @@ export default function Projects() {
                     />
                   </span>
                   <div>
-                    <h3 className="text-xl md:text-2xl font-heading font-bold text-pencil leading-tight group-hover:text-accent transition-colors">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-bold text-pencil leading-tight group-hover:text-accent transition-colors">
                       {project.title}
                     </h3>
                     {project.featured && (
-                      <span className="text-xs font-body text-accent uppercase tracking-wide">
+                      <span className="text-[11px] sm:text-xs font-body text-accent uppercase tracking-wide">
                         ★ Production System
                       </span>
                     )}

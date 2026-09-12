@@ -48,14 +48,14 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 px-6">
+    <section id="experience" className="py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
-        <div className="flex items-center gap-3 mb-12">
-          <span className="inline-flex items-center justify-center w-10 h-10 border-2 border-pencil rough-circle bg-pen-blue/10">
-            <Briefcase size={20} strokeWidth={2.5} />
+        <div className="flex items-center gap-3 mb-8 sm:mb-12">
+          <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil rough-circle bg-pen-blue/10">
+            <Briefcase size={18} strokeWidth={2.5} />
           </span>
-          <span className="sticky-tag text-xl">Experience</span>
+          <span className="sticky-tag text-lg sm:text-xl">Experience</span>
         </div>
 
         {/* Timeline */}
@@ -65,7 +65,7 @@ export default function Experience() {
             className="hidden md:block absolute left-8 top-0 bottom-0 dashed-line"
           />
 
-          <div className="space-y-10">
+          <div className="space-y-6 sm:space-y-10">
             {experiences.map((exp, i) => (
               <div
                 key={i}
@@ -81,40 +81,40 @@ export default function Experience() {
                 </div>
 
                 <div
-                  className={`card-sketchy tape p-6 md:p-8`}
+                  className={`card-sketchy tape p-5 sm:p-6 md:p-8`}
                   style={{ transform: `rotate(${exp.rotation})` }}
                 >
                   {/* Period badge */}
-                  <div className="flex flex-wrap items-center gap-3 mb-3">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-body text-pencil/60">
-                      <Calendar size={14} strokeWidth={2.5} />
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-body text-pencil/60">
+                      <Calendar size={13} strokeWidth={2.5} />
                       {exp.period}
                     </span>
-                    <span className="text-sm font-body text-pencil/40">
+                    <span className="text-xs sm:text-sm font-body text-pencil/40">
                       • {exp.location}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-pencil mb-1">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-pencil mb-1">
                     {exp.title}
                   </h3>
-                  <p className="text-lg font-body text-accent mb-1">
+                  <p className="text-base sm:text-lg font-body text-accent mb-1">
                     {exp.org}
                   </p>
                   {exp.sub && (
-                    <p className="text-base font-body text-pencil/50 mb-4 italic">
+                    <p className="text-sm sm:text-base font-body text-pencil/50 mb-3 sm:mb-4 italic">
                       {exp.sub}
                     </p>
                   )}
 
                   {exp.points.length > 0 && (
-                    <ul className="space-y-2 mb-5">
+                    <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
                       {exp.points.map((point, j) => (
                         <li
                           key={j}
-                          className="flex gap-2 text-base md:text-lg font-body text-pencil/80"
+                          className="flex gap-2 text-sm sm:text-base md:text-lg font-body text-pencil/80 leading-relaxed"
                         >
-                          <span className="text-accent mt-1 shrink-0">✦</span>
+                          <span className="text-accent mt-0.5 sm:mt-1 shrink-0">✦</span>
                           <span>{point}</span>
                         </li>
                       ))}
@@ -122,9 +122,9 @@ export default function Experience() {
                   )}
 
                   {exp.tech.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {exp.tech.map((t) => (
-                        <span key={t} className="tech-tag">
+                        <span key={t} className="tech-tag text-xs sm:text-sm">
                           {t}
                         </span>
                       ))}

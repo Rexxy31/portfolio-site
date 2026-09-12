@@ -79,34 +79,34 @@ const groups: ResponsibilityGroup[] = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-6">
+    <section id="skills" className="py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
-        <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center w-10 h-10 border-2 border-pencil rough-circle bg-accent/10">
-            <Wrench size={20} strokeWidth={2.5} />
+        <div className="flex items-center gap-3 mb-3 sm:mb-4">
+          <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil rough-circle bg-accent/10">
+            <Wrench size={18} strokeWidth={2.5} />
           </span>
-          <span className="sticky-tag text-xl">Technical Capabilities &amp; Skills</span>
+          <span className="sticky-tag text-lg sm:text-xl">Technical Capabilities &amp; Skills</span>
         </div>
 
-        <p className="text-lg font-body text-pencil/65 mb-10 max-w-2xl">
+        <p className="text-base sm:text-lg font-body text-pencil/65 mb-8 sm:mb-10 max-w-2xl">
           Grouped by engineering responsibilities I handle in production — from application code and databases to GIS services and infrastructure automation.
         </p>
 
         {/* 4 Responsibility Groups */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-5 sm:gap-6">
           {groups.map((group) => (
             <div
               key={group.name}
-              className={`card-sketchy p-6 ${group.color} transition-all duration-100 hover:shadow-hard`}
+              className={`card-sketchy p-5 sm:p-6 ${group.color} transition-all duration-100 hover:shadow-hard`}
               style={{ transform: `rotate(${group.rotation})` }}
             >
               <div className="flex items-start gap-3 mb-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 border-2 border-pencil bg-white shrink-0 rough-circle">
-                  <group.icon size={18} strokeWidth={2.5} className="text-pencil" />
+                <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil bg-white shrink-0 rough-circle">
+                  <group.icon size={17} strokeWidth={2.5} className="text-pencil" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-heading font-bold text-pencil">
+                  <h3 className="text-lg sm:text-xl font-heading font-bold text-pencil">
                     {group.name}
                   </h3>
                   <p className="text-xs font-body text-pencil/60">
@@ -117,12 +117,12 @@ export default function Skills() {
 
               {/* Dot-separated skills with explicit note badges where needed */}
               <div className="pt-3 border-t-2 border-dashed border-pencil/15">
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-2 text-base font-body text-pencil/85">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm sm:text-base font-body text-pencil/85">
                   {group.skills.map((skill, idx) => (
                     <span key={skill.name} className="inline-flex items-center gap-1.5">
                       <span className="font-semibold text-pencil">{skill.name}</span>
                       {skill.note && (
-                        <span className="text-[11px] font-sans px-1.5 py-0.5 rounded border border-pencil/30 bg-white/80 text-pencil/70 font-normal">
+                        <span className="text-[10px] sm:text-[11px] font-sans px-1.5 py-0.5 rounded border border-pencil/30 bg-white/80 text-pencil/70 font-normal">
                           {skill.note}
                         </span>
                       )}

@@ -26,29 +26,29 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="inline-flex items-center justify-center w-10 h-10 border-2 border-pencil rough-circle bg-pen-blue/10">
-            <Mail size={20} strokeWidth={2.5} />
+        <div className="flex items-center gap-3 mb-8 sm:mb-10">
+          <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 border-2 border-pencil rough-circle bg-pen-blue/10">
+            <Mail size={18} strokeWidth={2.5} />
           </span>
-          <span className="sticky-tag text-xl">Get In Touch</span>
+          <span className="sticky-tag text-lg sm:text-xl">Get In Touch</span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
           {/* Contact form */}
           <div
-            className="card-sketchy p-6 md:p-8"
+            className="card-sketchy p-5 sm:p-6 md:p-8"
             style={{ transform: "rotate(-0.5deg)" }}
           >
-            <h3 className="text-2xl font-heading font-bold text-pencil mb-6">
+            <h3 className="text-xl sm:text-2xl font-heading font-bold text-pencil mb-5 sm:mb-6">
               Drop me a note ✉️
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
-                <label className="block text-base font-body text-pencil/70 mb-1.5">
+                <label className="block text-sm sm:text-base font-body text-pencil/70 mb-1">
                   Your Name
                 </label>
                 <input
@@ -64,7 +64,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-base font-body text-pencil/70 mb-1.5">
+                <label className="block text-sm sm:text-base font-body text-pencil/70 mb-1">
                   Email
                 </label>
                 <input
@@ -80,7 +80,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-base font-body text-pencil/70 mb-1.5">
+                <label className="block text-sm sm:text-base font-body text-pencil/70 mb-1">
                   Message
                 </label>
                 <textarea
@@ -97,7 +97,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="btn-sketchy w-full justify-center text-lg"
+                className="btn-sketchy w-full justify-center text-base sm:text-lg"
               >
                 <Send size={18} strokeWidth={2.5} />
                 {sent ? "Opening Mail Client..." : "Send Message"}
@@ -106,13 +106,13 @@ export default function Contact() {
           </div>
 
           {/* Contact info + speech bubble */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Speech bubble quote */}
             <div
-              className="relative card-sketchy p-6 md:p-8"
+              className="relative card-sketchy p-5 sm:p-6 md:p-8"
               style={{ transform: "rotate(0.5deg)" }}
             >
-              <p className="text-xl md:text-2xl font-heading font-bold text-pencil leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl font-heading font-bold text-pencil leading-relaxed">
                 &ldquo;Let&apos;s build something that matters.&rdquo;
               </p>
 
@@ -137,20 +137,20 @@ export default function Contact() {
 
             {/* Contact details */}
             <div
-              className="card-postit tack p-6 md:p-8"
+              className="card-postit tack p-5 sm:p-6 md:p-8"
               style={{ transform: "rotate(-1deg)" }}
             >
-              <h3 className="text-xl font-heading font-bold text-pencil mb-5">
+              <h3 className="text-lg sm:text-xl font-heading font-bold text-pencil mb-4 sm:mb-5">
                 Find me at
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-3.5 sm:space-y-4">
                 <a
                   href="mailto:yogeshkumarn.02@gmail.com"
-                  className="flex items-center gap-3 text-lg font-body text-pencil hover:text-accent transition-colors no-underline group"
+                  className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil hover:text-accent transition-colors no-underline group break-all"
                 >
-                  <span className="inline-flex items-center justify-center w-9 h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all">
-                    <Mail size={16} strokeWidth={2.5} />
+                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all shrink-0">
+                    <Mail size={15} strokeWidth={2.5} />
                   </span>
                   yogeshkumarn.02@gmail.com
                 </a>
@@ -159,10 +159,10 @@ export default function Contact() {
                   href="https://linkedin.com/in/yogeshkumar01"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-lg font-body text-pencil hover:text-pen-blue transition-colors no-underline group"
+                  className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil hover:text-pen-blue transition-colors no-underline group break-all"
                 >
-                  <span className="inline-flex items-center justify-center w-9 h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-pen-blue group-hover:text-white group-hover:border-pen-blue transition-all">
-                    <LinkedInIcon sx={{ fontSize: 18 }} />
+                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-pen-blue group-hover:text-white group-hover:border-pen-blue transition-all shrink-0">
+                    <LinkedInIcon sx={{ fontSize: 17 }} />
                   </span>
                   linkedin.com/in/yogeshkumar01
                 </a>
@@ -171,17 +171,17 @@ export default function Contact() {
                   href="https://yogeshkumarn.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-lg font-body text-pencil hover:text-accent transition-colors no-underline group"
+                  className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil hover:text-accent transition-colors no-underline group break-all"
                 >
-                  <span className="inline-flex items-center justify-center w-9 h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all">
-                    <Globe size={16} strokeWidth={2.5} />
+                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all shrink-0">
+                    <Globe size={15} strokeWidth={2.5} />
                   </span>
                   yogeshkumarn.vercel.app
                 </a>
 
-                <div className="flex items-center gap-3 text-lg font-body text-pencil/60">
-                  <span className="inline-flex items-center justify-center w-9 h-9 border-2 border-pencil/40 rough-circle bg-white">
-                    <MapPin size={16} strokeWidth={2.5} />
+                <div className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil/60">
+                  <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 border-pencil/40 rough-circle bg-white shrink-0">
+                    <MapPin size={15} strokeWidth={2.5} />
                   </span>
                   Bengaluru, Karnataka, India
                 </div>

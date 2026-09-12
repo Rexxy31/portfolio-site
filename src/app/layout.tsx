@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Kalam, Patrick_Hand } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const patrickHand = Patrick_Hand({
   subsets: ["latin"],
   weight: "400",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#fdfbf7",
+};
 
 export const metadata: Metadata = {
   title: "Yogesh Kumar — Software Engineer | GIS · Backend · Databases · DevOps",
@@ -53,13 +60,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${kalam.variable} ${patrickHand.variable} h-full`}
+      className={`${kalam.variable} ${patrickHand.variable} h-full overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-hidden w-full relative">
+        {children}
+      </body>
     </html>
   );
 }
