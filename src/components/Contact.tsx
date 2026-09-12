@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Send, Globe, MapPin } from "lucide-react";
+import { Mail, Send, MapPin } from "lucide-react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -168,15 +169,15 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://yogeshkumarn.vercel.app"
+                  href="https://github.com/Rexxy31"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil hover:text-accent transition-colors no-underline group break-all"
                 >
                   <span className="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 border-2 border-pencil rough-circle bg-white group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all shrink-0">
-                    <Globe size={15} strokeWidth={2.5} />
+                    <GitHubIcon sx={{ fontSize: 17 }} />
                   </span>
-                  yogeshkumarn.vercel.app
+                  github.com/Rexxy31
                 </a>
 
                 <div className="flex items-center gap-2.5 sm:gap-3 text-base sm:text-lg font-body text-pencil/60">

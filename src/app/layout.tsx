@@ -22,6 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yogesh.is-a.dev"),
   title: "Yogesh Kumar — Software Engineer | GIS · Backend · Databases · DevOps",
   description:
     "Portfolio of Yogesh Kumar, a Software Engineer building and maintaining production systems across application development, databases, GIS infrastructure, and deployment (Spring Boot, Next.js, PostgreSQL/PostGIS, MongoDB, GeoServer, Linux, GitLab CI/CD, Docker).",
@@ -55,6 +56,8 @@ export const metadata: Metadata = {
     title: "Yogesh Kumar — Software Development Engineer",
     description:
       "Building scalable, production-grade web systems for government departments across Karnataka.",
+    url: "https://yogesh.is-a.dev",
+    siteName: "Yogesh Kumar Portfolio",
     type: "website",
     locale: "en_IN",
   },
